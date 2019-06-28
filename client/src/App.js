@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 
 class App extends Component {
+
+
+
+
+
   render() {
     return (
       <>
@@ -18,6 +23,7 @@ class App extends Component {
                 <label for="staticEmail" class="col-sm-2 col-form-label">Input a URL</label>
                 <div class="col-sm-10">
                   <input type="text" readonly class="form-control-plaintext" id="staticURL" value="" placeholder="https://www.google.com" />
+                  <button type="submit" onClick={() => { alert("click");}} class="btn btn-primary mb-2">Submit</button>
                 </div>
               </div>
 
