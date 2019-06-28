@@ -1,29 +1,55 @@
-# Create React Express App
+# Piano Roll
 
-## About This Boilerplate
+Welcome to Piano Roll, a new technology designed to create music from sourcecode!
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## Getting Started
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+???
 
-## Starting the app locally
+### Prerequisites
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+??? 
 
-```
-npm install
-```
 
-This should install node modules within the server and the client folder.
+```(Shrug)```
 
-After both installations complete, run the following command in your terminal:
 
-```
-npm start
-```
+## Running the tests
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+??? 
 
-## Deployment (Heroku)
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+## Built With
+
+* [Dotenv](https://www.npmjs.com/package/dotenv) - Secure data encryption
+* [Express](https://www.npmjs.com/package/express) - Server Creation
+* [React](https://reactjs.org/) - Front-End UI Components
+* [Mongoose DB](https://www.npmjs.com/package/mongoose) - Database Creation / Querying
+
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://github.com/standard/standard/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. 
+
+## Authors
+
+* **Owen Dennehey** - *Research, Co-Creator* - (https://github.com/OwenDennehy95)
+
+* **Alex Pino** - *Intial work, Co-Creator* - (https://github.com/apino117)
+
+See also the list of [contributors](https://github.com/apino117/piano_roll/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the ISC License - see the [LICENSE.md](https://opensource.org/licenses/ISC) file for details
+
+## Acknowledgments
+
+* ???
+
+## Heroku
+???
