@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
 
+const MonoSynth = require("Tone").MonoSynth;
+
+//create a synth and connect it to the master output (your speakers)
+const synth = new MonoSynth().toMaster();;
+
+
+
+
+//play a middle 'C' for the duration of an 8th note
+synth.triggerAttackRelease('C4', '8n');
+
 class App extends Component {
 
 
