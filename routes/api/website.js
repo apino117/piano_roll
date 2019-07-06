@@ -1,4 +1,11 @@
 const router = require("express").Router();
+const websiteController = require("../../controllers/websiteController");
+
+
+// Matches with "/api/website"
+router.route("/")
+    .get(websiteController.findAll);
+
 
 // ---------- UNCOMMENT WHEN NECESSARY
 // const websiteController = require("../../controllers/websiteController");

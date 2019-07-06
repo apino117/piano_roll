@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const routes = require("./routes")
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
@@ -23,6 +24,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
+
+// Add routes
+app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true }, function (err) {
