@@ -25,7 +25,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true }, function (err) {
+  if (err) {
+    console.log(err)
+  }
+  else { console.log("successfully connected to database!") };
+})
 
 app.get("/scrape", function (req, res) {
 
