@@ -36,37 +36,6 @@ mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true }, f
   else { console.log("successfully connected to database!") };
 })
 
-app.get("/scrape", function (req, res) {
-
-  axios.get("http://www.echojs.com/").then(function (response) {
-
-    const $ = cheerio.load(response.data);
-
-    $("article h2").each(function (i, element) {
-
-      const result = {};
-
-      result.title = $(this)
-        .children("a")
-        .text();
-      result.url = $(this)
-        .children("a")
-        .attr("href");
-
-      db.Website.create(result)
-        .then(function (dbWebsite) {
-          console.log(dbWebsite);
-        })
-        .catch(function (err) {
-          console.log(err)
-        });
-    })
-
-    // Send a message to the client
-    res.send("Scrape Complete");
-  });
-});
-
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

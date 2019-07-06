@@ -31,11 +31,11 @@ const scrape = function () {
 
             websites.push(dataToAdd);
             // Send a message to the client
-        res.send("Scrape Complete");
+            res.send("Scrape Complete");
         });
         return websites;
 
-        
+
     });
 
 }
