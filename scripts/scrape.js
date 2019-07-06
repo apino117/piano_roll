@@ -1,5 +1,5 @@
 const axios = require("axios");
-const cheerios = require("cheerio");
+const cheerio = require("cheerio");
 
 const scrape = function () {
 
@@ -34,8 +34,7 @@ const scrape = function () {
             res.send("Scrape Complete");
         });
         return websites;
-
-
     });
-
 }
+
+module.exports = scrape;
