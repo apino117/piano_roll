@@ -4,7 +4,8 @@ const websiteController = require("../../controllers/websiteController");
 
 // Matches with "/api/website"
 router.route("/")
-    .get(websiteController.findAll);
+    .get(websiteController.findAll)
+    .post(websiteController.create)
 
 
 // ---------- UNCOMMENT WHEN NECESSARY
