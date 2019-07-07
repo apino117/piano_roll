@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(express.static("public")); // Make public a static folder
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({ secret: process.env.PASSPORT_SECRET })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
