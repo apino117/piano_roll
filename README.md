@@ -1,4 +1,4 @@
-# Piano Roll
+# HTML Piano Roll
 
 Welcome to Piano Roll, a new technology designed to create music from sourcecode!
 
