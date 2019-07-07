@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Login from "./pages/Login";
 const Tone = require("tone");
 
 class App extends Component {
@@ -68,13 +70,19 @@ class App extends Component {
                 </div>
 
               </div>
-
-
-
-
             </div>
           </div>
         </div>
+        <Router>
+          <div>
+            <Switch>
+              {/* <Route exact path="/" component={Home} />
+              <Route exact path="/saved" component={Saved} />
+              <Route component={NoMatch} /> */}
+              <Route exact path="/login" component={Login} />
+            </Switch>
+          </div>
+        </Router>
       </>
     );
   }
