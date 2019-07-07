@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+
+// Router Stuff
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
 const Tone = require("tone");
 
 class App extends Component {
@@ -79,6 +83,7 @@ class App extends Component {
               <Route exact path="/saved" component={Saved} />
               <Route component={NoMatch} /> */}
               <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
             </Switch>
           </div>
         </Router>
