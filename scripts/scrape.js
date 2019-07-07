@@ -27,11 +27,9 @@ const scrape = function () {
                     title: titleNeat,
                     url: url
                 }
-            }
 
-            websites.push(dataToAdd);
-            // Send a message to the client
-            res.send("Scrape Complete");
+                websites.push(dataToAdd);
+            }
         });
         return websites;
     });

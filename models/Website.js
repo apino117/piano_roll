@@ -29,7 +29,7 @@ var websiteSchema = new Schema({
     // }
   });
 
-  // Create the Headline model using the headlineSchema
-var Website = mongoose.model("Website", websiteSchema);
+  // Create the Headline model using the schema
+const Website = mongoose.model("Website", websiteSchema);
 
 module.exports = Website;
