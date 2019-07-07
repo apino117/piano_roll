@@ -21,7 +21,7 @@ module.exports = {
             })
             .catch(function (err) {
                 res.json({
-                    message: "Scrape complete!!!!"
+                    message: "this is an error?"
                 })
             })
     }
