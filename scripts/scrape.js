@@ -11,26 +11,56 @@ const scrape = function () {
 
         let websites = [];
 
-        $("article h2").each(function (i, element) {
+        let dataToAdd = {
+            title: [],
+            tags: []
+        }
+
+        $("title").each(function (i, element) {
 
             let title = $(this)
-                .children("a")
                 .text();
-            let url = $(this)
-                .children("a")
-                .attr("href");
 
-            if (title && url) {
-                const titleNeat = title.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+            let titleNeat = title.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
 
-                let dataToAdd = {
-                    title: titleNeat,
-                    url: url
-                }
+            dataToAdd.title.push(titleNeat);
 
-                websites.push(dataToAdd);
-            }
         });
+
+        $("div").each(function (i, element) {
+
+            let tags = $(this)
+                .children()
+                .name;
+
+            dataToAdd.tags.push(tags);
+
+        })
+
+        // websites.push(dataToAdd);
+        console.log(dataToAdd);
+
+        // $("article h2").each(function (i, element) {
+
+
+        //     let title = $(this)
+        //         .children("a")
+        //         .text();
+        //     let url = $(this)
+        //         .children("a")
+        //         .attr("href");
+
+        //     if (title && url) {
+        //         const titleNeat = title.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+
+        //         let dataToAdd = {
+        //             title: titleNeat,
+        //             url: url
+        //         }
+
+        //         websites.push(dataToAdd);
+        //     }
+        // });
         return websites;
     });
 }

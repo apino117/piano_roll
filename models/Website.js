@@ -10,18 +10,15 @@ var websiteSchema = new Schema({
     },
     url: {
       type: String,
-      required: true,
+      required: false,
       // unique: { index: { unique: true } }
     },
     date: {
       type: Date,
       default: Date.now
     },
-    scrapedData: {
-      type: String
-    },
-    midi: {
-      type: String
+    tags: {
+      type: String,
     }
     // saved: {
     //   type: Boolean,
