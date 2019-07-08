@@ -13,6 +13,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
+require('dotenv').config();
+const passportSecret = process.env.PASSPORT_SECRET;
+
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
@@ -36,7 +39,7 @@ app.use(express.json());
 app.use(express.static("public")); // Make public a static folder
 
 // required for passport
-app.use(session({ secret: process.env.PASSPORT_SECRET })); // session secret
+app.use(session({ secret: passportSecret })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
