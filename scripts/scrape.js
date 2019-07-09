@@ -18,7 +18,7 @@ const scrape = function () {
             tags: []
         }
 
-        $("title").each(function (i, element) {
+        $("title").each(function (index, element) {
 
             let title = $(this)
                 .text();
@@ -29,19 +29,18 @@ const scrape = function () {
 
         });
 
-        $("div").each(function (i, element) {
+        $("div").find("div").each(function (index, element) {
 
-            let tags = $(this)
+            let tags = $(element);
                 // .children()
-                .index(0)
-                .tagName;
+                // .tagName;
 
             dataToAdd.tags.push(tags);
 
         })
 
         // websites.push(dataToAdd);
-        console.log(dataToAdd);
+        console.dir(dataToAdd);
 
         // $("article h2").each(function (i, element) {
 
