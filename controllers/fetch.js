@@ -9,16 +9,10 @@ module.exports = {
             .then(function (websites) {
                 return db.Website.create(websites);
             })
-            .then(function (dbWebsite) {
-                if (dbWebsite.length === 0) {
-                    res.json({
-                        message: "no websites"
-                    });
-                } else {
-                    res.json({
-                        message: "added " + dbWebsite.length + " websites!!!"
-                    });
-                }
+            .then(function () {
+                res.json({
+                    message: "scrape done"
+                })
             })
             .catch(function (err) {
                 res.json({
