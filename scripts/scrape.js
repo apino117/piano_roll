@@ -1,6 +1,5 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-// const tagName = this.tagName;
 
 const scrape = function () {
 
@@ -10,68 +9,27 @@ const scrape = function () {
 
         console.log("scraping");
 
-        let websites = [];
+
+        let websites = []; // create blank arrays to hold our final website and to hold the tag data we're gonna push
 
         let dataToAdd = {
-            title: $("title").text(),
+            title: $("title").text(), // title we can set already cause it's always the same HTML
             tags: []
         }
 
-        // $("title").each(function (index, element) {
-        //     // console.log(element);
-        //     console.log($(this));
-        //     let title = $(this)
-        //         .text();
+        
+        $('body').children().each(function (index, element) { // for every child of the main body
 
-        //     let titleNeat = title.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+            let tags = (element.tagName); // grab the tagname
 
-        //     dataToAdd.title.push(titleNeat);
+            dataToAdd.tags.push(tags); // push that to the tags section of the array
 
-        // });
+        });
 
-        $('body').children().each(function(index, element) {
+        console.log(dataToAdd); // just the see what we're working with
 
-            let tags = (element.tagName);
-            // console.log(element.tagName);
-            dataToAdd.tags.push(tags);
-        })
+        websites.push(dataToAdd); // push to the websites array 
 
-        // $("div").find("div").each(function (index, element) {
-
-        //     let tags = $(element);
-        //         // .children()
-        //         // .tagName;
-
-            
-
-        // })
-
-        // websites.push(dataToAdd);
-        console.log(dataToAdd);
-
-        websites.push(dataToAdd);
-
-        // $("article h2").each(function (i, element) {
-
-
-        //     let title = $(this)
-        //         .children("a")
-        //         .text();
-        //     let url = $(this)
-        //         .children("a")
-        //         .attr("href");
-
-        //     if (title && url) {
-        //         const titleNeat = title.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-
-        //         let dataToAdd = {
-        //             title: titleNeat,
-        //             url: url
-        //         }
-
-        //         websites.push(dataToAdd);
-        //     }
-        // });
         return websites;
     });
 }
