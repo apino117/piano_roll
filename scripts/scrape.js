@@ -1,6 +1,5 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-
 const tagName = this.tagName;
 
 const scrape = function () {
