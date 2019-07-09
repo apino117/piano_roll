@@ -8,11 +8,11 @@ const websiteSchema = new Schema({
       type: String,
       required: true
     },
-    url: {
-      type: String,
-      required: false,
-      // unique: { index: { unique: true } }
-    },
+    // url: {
+    //   type: String,
+    //   required: false,
+    //   // unique: { index: { unique: true } }
+    // },
     date: {
       type: Date,
       default: Date.now
