@@ -18,7 +18,7 @@ const websiteSchema = new Schema({
       default: Date.now
     },
     tags: {
-      type: String,
+      type: Array,
     }
     // saved: {
     //   type: Boolean,
