@@ -49,6 +49,8 @@ const scrape = function () {
         // websites.push(dataToAdd);
         console.log(dataToAdd);
 
+        websites.push(dataToAdd);
+
         // $("article h2").each(function (i, element) {
 
 
