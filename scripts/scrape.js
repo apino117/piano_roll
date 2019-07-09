@@ -1,6 +1,8 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
+const tagName = this.tagName;
+
 const scrape = function () {
 
     return axios.get("http://www.echojs.com/").then(function (response) {
@@ -30,8 +32,9 @@ const scrape = function () {
         $("div").each(function (i, element) {
 
             let tags = $(this)
-                .children()
-                .name;
+                // .children()
+                .index(0)
+                .tagName;
 
             dataToAdd.tags.push(tags);
 
