@@ -20,7 +20,7 @@ const scrape = function () {
         }
 
 
-        $('body').children().each(function (index, element) { // for every child of the main body
+        $("body").children().each(function (index, element) { // for every child of the main body
 
             let tags = (element.tagName); // grab the tagname
 

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
+import UrlForm from "./components/UrlForm";
 
 const Tone = require("tone");
 
@@ -41,6 +42,8 @@ class App extends Component {
 
   }
 
+  // returnValue()
+
 
   render() {
     return (
@@ -52,15 +55,9 @@ class App extends Component {
 
             <div className="col-12" id="main-content-column">
 
+              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth</button>
 
-
-              <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Input a URL</label>
-                <div className="col-sm-10">
-                  <input type="text" readOnly className="form-control-plaintext" id="staticURL" value="" placeholder="https://www.google.com" />
-                  <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Submit</button>
-                </div>
-              </div>
+              <UrlForm />
 
               <div class="container">
 
