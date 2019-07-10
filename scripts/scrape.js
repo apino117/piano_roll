@@ -1,9 +1,11 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
+let useThisUrl = "http://reductress.com/"
+
 const scrape = function () {
 
-    return axios.get("https://www.highcharts.com/docs/accessibility/sonification").then(function (response) {
+    return axios.get(useThisUrl).then(function (response) {
 
         const $ = cheerio.load(response.data);
 
