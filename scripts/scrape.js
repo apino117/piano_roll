@@ -1,9 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-let useThisUrl = "http://reductress.com/"
-
-const scrape = function () {
+const scrape = useThisUrl => {
 
     return axios.get(useThisUrl).then(function (response) {
 
