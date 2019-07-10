@@ -1,4 +1,6 @@
 import React from "react";
+import API from "../../utils/API"
+
 
 class UrlForm extends React.Component {
     constructor(props) {
@@ -15,10 +17,26 @@ class UrlForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        alert('A URL was submitted: ' + this.state.value);
-        
+        const passedURL = this.state.value;
+
+        alert('A URL was submitted: ' + passedURL);
+
+
 
         this.setState({ value: ' ' });
+    }
+
+    getWebsites = () => {
+        API.getWebsites(this.state.q)
+            .then(res =>
+                this.setState({
+                    websites: res.data
+                })).catch(() => {
+                    this.setState({
+                        websites: [],
+                        message: "something went wrong"
+                    })
+                })
     }
 
     render() {
