@@ -1,11 +1,13 @@
 const db = require("../models");
 const scrape = require("../scripts/scrape");
 
-let useThisUrl = "http://reductress.com/"
+// let useThisUrl = "http://reductress.com/"
 
 module.exports = {
 
-    scrapedWebsites: function (req, res) {
+    scrapedWebsites: function (req, res, useThisUrl) {
+        
+        const {query: params} = useThisUrl;
 
         return scrape(useThisUrl)
             .then(function (websites) {
