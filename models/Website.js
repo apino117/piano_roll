@@ -6,24 +6,13 @@ const websiteSchema = new Schema({
 
     title: {
       type: String,
-      required: true
-    },
-    // url: {
-    //   type: String,
-    //   required: false,
-    //   // unique: { index: { unique: true } }
-    // },
-    date: {
-      type: Date,
-      default: Date.now
+      required: true,
+      unique: true
     },
     tags: {
       type: Array,
     }
-    // saved: {
-    //   type: Boolean,
-    //   default: false
-    // }
+
   });
 
   // Create the Headline model using the schema
