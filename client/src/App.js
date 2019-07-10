@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
-import UrlForm from "./components/UrlForm";
-import API from "./utils/API"
+import UrlForm from "./components/UrlForm/index";
+
 
 const Tone = require("tone");
 
@@ -15,6 +15,7 @@ class App extends Component {
   state = {
     audioContext: {},
     websites: [],
+    q: ""
   }
 
   componentDidMount = () => {
@@ -23,20 +24,6 @@ class App extends Component {
 
     this.setState({ audioContext: context });
 
-    this.getWebsites();
-  }
-
-  getWebsites = () => {
-    API.getWebsites(this.state)
-    .then(res =>
-      this.setState({
-        websites: res.data
-      })).catch(() => {
-        this.setState({
-          websites: [],
-          message: "something went wrong"
-        })
-      })
   }
 
   playSynth = () => {
@@ -74,7 +61,9 @@ class App extends Component {
 
               <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth</button>
 
-              <UrlForm />
+              <UrlForm
+                q={this.state.q}
+              />
 
               <div class="container">
 
