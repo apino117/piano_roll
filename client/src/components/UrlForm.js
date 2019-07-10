@@ -14,8 +14,11 @@ class UrlForm extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('A URL was submitted: ' + this.state.value);
         event.preventDefault();
+        alert('A URL was submitted: ' + this.state.value);
+        
+
+        this.setState({ value: ' ' });
     }
 
     render() {
