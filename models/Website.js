@@ -7,7 +7,6 @@ const websiteSchema = new Schema({
     title: {
       type: String,
       required: true,
-      unique: true
     },
     tags: {
       type: Array,
@@ -15,7 +14,7 @@ const websiteSchema = new Schema({
 
   });
 
-  // Create the Headline model using the schema
+  // Create the website model using the schema
 const Website = mongoose.model("Website", websiteSchema);
 
 module.exports = Website;

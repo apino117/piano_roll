@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 const scrape = function () {
 
-    return axios.get("https://jameshfisher.com/2018/11/25/google-ngram-api/").then(function (response) {
+    return axios.get("https://www.highcharts.com/docs/accessibility/sonification").then(function (response) {
 
         const $ = cheerio.load(response.data);
 
