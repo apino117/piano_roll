@@ -6,20 +6,37 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import UrlForm from "./components/UrlForm";
+import API from "./utils/API"
 
 const Tone = require("tone");
 
 class App extends Component {
 
   state = {
-    audioContext: {}
+    audioContext: {},
+    websites: [],
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
 
     const context = new AudioContext();
 
     this.setState({ audioContext: context });
+
+    this.getWebsites();
+  }
+
+  getWebsites = () => {
+    API.getWebsites(this.state)
+    .then(res =>
+      this.setState({
+        websites: res.data
+      })).catch(() => {
+        this.setState({
+          websites: [],
+          message: "something went wrong"
+        })
+      })
   }
 
   playSynth = () => {
