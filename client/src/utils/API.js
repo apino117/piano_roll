@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
 
-scrapeWebsite: (websiteToScrape) => {
-    return axios.get("/api/fetch")
+scrapeWebsite: (q) => {
+    return axios.get("/api/fetch", {params: {q}})
 },
 
 alert: (thingToSay) => {
