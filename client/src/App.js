@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Form from "./components/Form/index";
+import API from "./utils/API";
 
 
 const Tone = require("tone");
@@ -36,7 +37,11 @@ class App extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    console.log(this.state.q)
+    const urlToScrape = this.state.q;
+
+    API.alert(urlToScrape);
+
+    console.log(urlToScrape);
 
     this.setState({
       q: " "

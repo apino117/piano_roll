@@ -22,7 +22,6 @@ class UrlForm extends React.Component {
         alert('A URL was submitted: ' + passedURL);
 
 
-
         this.setState({ value: ' ' });
     }
 
