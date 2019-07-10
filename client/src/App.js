@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
-import UrlForm from "./components/UrlForm/index";
+import Form from "./components/Form/index";
 
 
 const Tone = require("tone");
@@ -25,6 +25,24 @@ class App extends Component {
     this.setState({ audioContext: context });
 
   }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+
+    console.log(this.state.q)
+
+    this.setState({
+      q: " "
+    });
+    // this.getBooks();
+  };
 
   playSynth = () => {
 
@@ -61,7 +79,9 @@ class App extends Component {
 
               <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth</button>
 
-              <UrlForm
+              <Form
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
                 q={this.state.q}
               />
 

@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
 
-getWebsites: () => {
-    return axios.get("/api/website")
+scrapeWebsite: (websiteToScrape) => {
+    return axios.get("/api/fetch")
 }
 
 
