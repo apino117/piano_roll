@@ -24,7 +24,9 @@ Welcome to Piano Roll, a new technology designed to create music from sourcecode
 * [Dotenv](https://www.npmjs.com/package/dotenv) - Secure data encryption
 * [Express](https://www.npmjs.com/package/express) - Server Creation
 * [React](https://reactjs.org/) - Front-End UI Components
-* [Mongoose DB](https://www.npmjs.com/package/mongoose) - Database Creation / Querying
+* [Mongoose DB](https://www.npmjs.com/package/mongoose) - Database Creation
+* [Axios](https://www.npmjs.com/package/axios) - API querying
+* [Cheerio](https://www.npmjs.com/package/cheerio) - Web Scraping
 
 
 ## Contributing
