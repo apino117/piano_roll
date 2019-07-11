@@ -1,19 +1,53 @@
 import React, { Component } from "react";
-import "./App.css";
+
+// Router Stuff
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
+import Form from "./components/Form/index";
+import API from "./utils/API";
+
+
 const Tone = require("tone");
 
 class App extends Component {
 
   state = {
-    audioContext: {}
+    audioContext: {},
+    websites: [],
+    q: ""
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
 
     const context = new AudioContext();
 
     this.setState({ audioContext: context });
+
   }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+
+    const urlToScrape = this.state.q;
+
+    API.alert(urlToScrape);
+
+    console.log(urlToScrape);
+
+    this.setState({
+      q: " "
+    });
+    // this.getBooks();
+  };
 
   playSynth = () => {
 
@@ -35,6 +69,8 @@ class App extends Component {
 
   }
 
+  // returnValue()
+
 
   render() {
     return (
@@ -46,23 +82,41 @@ class App extends Component {
 
             <div className="col-12" id="main-content-column">
 
+              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth</button>
 
+              <Form
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
+                q={this.state.q}
+              />
 
-              <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Input a URL</label>
-                <div className="col-sm-10">
-                  <input type="text" readOnly className="form-control-plaintext" id="staticURL" value="" placeholder="https://www.google.com" />
-                  <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Submit</button>
+              <div class="container">
+
+                <div class="jumbotron text-center">
+                  <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+
+                  <p>Login or Register with:</p>
+
+                  <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+                  <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
                 </div>
+
               </div>
-
-
-
-
-
             </div>
           </div>
         </div>
+        <Router>
+          <div>
+            <Switch>
+              {/* <Route exact path="/" component={Home} />
+              <Route exact path="/saved" component={Saved} />
+              <Route component={NoMatch} /> */}
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/profile" component={Profile} />
+            </Switch>
+          </div>
+        </Router>
       </>
     );
   }

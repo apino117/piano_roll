@@ -1,27 +1,26 @@
 const db = require("../models");
 const scrape = require("../scripts/scrape");
 
+let useThisUrl = "http://reductress.com/"
+
 module.exports = {
 
     scrapedWebsites: function (req, res) {
-        return scrape()
+        
+        // const {query: params} = useThisUrl;
+
+        return scrape(useThisUrl)
             .then(function (websites) {
-                return db.Title.create(websites);
+                return db.Website.create(websites);
             })
-            .then(function (dbTitle) {
-                if (dbTitle.length === 0) {
-                    res.json({
-                        message: "no websites"
-                    });
-                } else {
-                    res.json({
-                        message: "added " + dbTitle.length + " websites!!!"
-                    });
-                }
+            .then(function () {
+                res.json({
+                    message: "scrape done"
+                })
             })
             .catch(function (err) {
                 res.json({
-                    message: "Scrape complete!!!!"
+                    message: "this is an error " + err
                 })
             })
     }

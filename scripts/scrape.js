@@ -1,39 +1,41 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const scrape = function () {
+const scrape = useThisUrl => {
 
-    return axios.get("http://www.echojs.com/").then(function (response) {
+    return axios.get(useThisUrl).then(function (response) {
 
         const $ = cheerio.load(response.data);
 
         console.log("scraping");
 
-        let websites = [];
 
-        $("article h2").each(function (i, element) {
+        // let websites = []; // create blank arrays to hold our final website and to hold the tag data we're gonna push
 
-            let title = $(this)
-                .children("a")
-                .text();
-            let url = $(this)
-                .children("a")
-                .attr("href");
+        let dataToAdd = {
+            title: $("title").text(), // title we can set already cause it's always the same HTML
+            tags: [],
+        }
 
-            if (title && url) {
-                const titleNeat = title.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
 
-                let dataToAdd = {
-                    title: titleNeat,
-                    url: url
-                }
+        $("body").children().each(function (index, element) { // for every child of the main body
+
+            let tags = (element.tagName); // grab the tagname
+
+            for (let i = 0; i < tags.length; i++) {
+            //    console.log(tags[i]);
+               dataToAdd.tags.push(tags[i].charCodeAt(0)); // push that to the tags section of the array
             }
 
-            websites.push(dataToAdd);
-            // Send a message to the client
-            res.send("Scrape Complete");
         });
-        return websites;
+
+        console.log(dataToAdd); // just the see what we're working with
+
+
+
+        // websites.push(dataToAdd); // push to the websites array 
+
+        return dataToAdd;
     });
 }
 

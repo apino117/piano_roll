@@ -1,35 +1,20 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 
-var websiteSchema = new Schema({
+const websiteSchema = new Schema({
 
     title: {
       type: String,
-      required: true
-    },
-    url: {
-      type: String,
       required: true,
-      // unique: { index: { unique: true } }
     },
-    date: {
-      type: Date,
-      default: Date.now
-    },
-    scrapedData: {
-      type: String
-    },
-    midi: {
-      type: String
+    tags: {
+      type: Array,
     }
-    // saved: {
-    //   type: Boolean,
-    //   default: false
-    // }
+
   });
 
-  // Create the Headline model using the headlineSchema
-var Website = mongoose.model("Website", websiteSchema);
+  // Create the website model using the schema
+const Website = mongoose.model("Website", websiteSchema);
 
 module.exports = Website;
