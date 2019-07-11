@@ -39,7 +39,7 @@ class App extends Component {
 
     const urlToScrape = this.state.q;
 
-    API.alert(urlToScrape);
+    API.saveWebsite(urlToScrape);
 
     console.log(urlToScrape);
 
