@@ -1,6 +1,6 @@
 # HTML Piano Roll
 
-Welcome to Piano Roll, a new technology designed to create music from sourcecode!
+Welcome to Piano Roll, a new technology designed to create music from sourcecode! How it works is you put in a URL, we then take tags from the HTML and convert them into musical notes.
 
 ## Getting Started
 
@@ -39,9 +39,9 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-* **Owen Dennehey** - *Research, Co-Creator* - (https://github.com/OwenDennehy95)
+* **Owen Dennehey** - *Co-Creator, Research & Sonification* - (https://github.com/OwenDennehy95)
 
-* **Alex Pino** - *Intial work, Co-Creator* - (https://github.com/apino117)
+* **Alex Pino** - *Co-Creator, Database, Web Scraper* - (https://github.com/apino117)
 
 See also the list of [contributors](https://github.com/apino117/piano_roll/graphs/contributors) who participated in this project.
 
