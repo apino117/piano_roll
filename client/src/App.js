@@ -8,6 +8,109 @@ import Profile from "./pages/Profile";
 import Form from "./components/Form/index";
 import API from "./utils/API";
 
+const exampleObject = {
+  tags: [
+    100,
+    105,
+    118,
+    110,
+    97,
+    118,
+    100,
+    105,
+    118,
+    100,
+    105,
+    118,
+    100,
+    105,
+    118,
+    100,
+    105,
+    118,
+    110,
+    111,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    110,
+    111,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    100,
+    105,
+    118
+  ],
+  _id: "5d2769a8653e748a1ce90c29",
+  title: "Reductress » Women's News. Feminized.",
+  __v: 0
+}
+
+const midiNotesObject = {
+
+}
+
 
 const Tone = require("tone");
 
@@ -17,6 +120,37 @@ class App extends Component {
     audioContext: {},
     websites: [],
     q: ""
+  }
+
+  getNoteObject = () => {
+
+    let noteObj = {};
+    let count = 0;
+    let column = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    let columnCount = 0;
+
+    for (let i = -2; i < 9; i++) {
+      for (columnCount = 0; columnCount < 12; columnCount++) {
+        noteObj[count] = column[columnCount] + i;
+        count++;
+      }
+      columnCount = 0;
+    }
+
+    return noteObj;
+  }
+
+  toneMap = (array) => {
+
+    for (let i = 0; i < array.length; i++) {
+
+      if (array[i] === 100) {
+
+        return "C4"
+
+      }
+
+    };
   }
 
   componentDidMount = () => {
@@ -52,15 +186,22 @@ class App extends Component {
   playSynth = () => {
 
 
-
     const synth = new Tone.FMSynth().toMaster();
-    //schedule a series of notes to play as soon as the page loads
-    synth.triggerAttackRelease('C4', '4n', '8n')
-    synth.triggerAttackRelease('E4', '8n', Tone.Time('4n') + Tone.Time('8n'))
-    synth.triggerAttackRelease('G4', '16n', '2n')
-    synth.triggerAttackRelease('B4', '16n', Tone.Time('2n') + Tone.Time('8t'))
-    synth.triggerAttackRelease('G4', '16', Tone.Time('2n') + Tone.Time('8t') * 2)
-    synth.triggerAttackRelease('E4', '2n', '0:3')
+
+
+    // exampleObject.tags.forEach((tag) => {
+    //   synth.triggerAttackRelease(this.getNoteObject()[tag], '2n', Tone.Time('2n') + Tone.Time('4n'))
+    // });
+
+
+
+    // schedule a series of notes to play as soon as the page loads
+    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[0]], '4n', '8n')
+    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[2]], '8n', Tone.Time('4n') + Tone.Time('8n'))
+    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[3]], '16n', '2n')
+    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[5]], '16n', Tone.Time('2n') + Tone.Time('8t'))
+    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[7]], '16', Tone.Time('2n') + Tone.Time('8t') * 2)
+    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[76]], '2n', '0:3')
 
     this.state.audioContext.resume().then(() => {
       console.log('Playback resumed successfully');
