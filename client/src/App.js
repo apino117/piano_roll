@@ -107,11 +107,6 @@ const exampleObject = {
   __v: 0
 }
 
-const midiNotesObject = {
-
-}
-
-
 const Tone = require("tone");
 
 class App extends Component {
