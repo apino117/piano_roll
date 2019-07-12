@@ -2,9 +2,9 @@ import axios from "axios";
 
 export default {
 
-    scrapeWebsite: (q) => {
-        return axios.post("/api/fetch", { params: { q } })
-    },
+    // scrapeWebsite: (q) => {
+    //     return axios.post("/api/fetch", { params: { q } })
+    // },
 
     alert: (thingToSay) => {
         alert(thingToSay)
@@ -18,8 +18,8 @@ export default {
     // {axios.get(wb)}
     // return 
 
-    saveWebsite: function (websiteData) {
-        console.log("inside savewebsite "+ websiteData);
+    saveWebsite:  websiteData => {
+        console.log("inside savewebsite " + websiteData);
         return axios.post("/api/fetch", websiteData)
     },
 
