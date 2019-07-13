@@ -8,7 +8,7 @@ const UrlSchema = new Schema({
     type: String,
     required: true,
   },
-    tags: {
+  tags: {
     type: Array,
   },
   title: {

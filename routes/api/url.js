@@ -10,6 +10,10 @@ router.route("/")
 router.route("/:id")
     .get(urlController.findById);
 
+// Matches with /api/url/:url
+router.route("/:url")
+    .get(urlController.findByUrl)
+
 
 
 module.exports = router;
