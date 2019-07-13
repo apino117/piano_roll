@@ -9,102 +9,102 @@ import Form from "./components/Form/index";
 import API from "./utils/API";
 
 const exampleObject = {
-  // tags: [
-  //   100,
-  //   105,
-  //   118,
-  //   110,
-  //   97,
-  //   118,
-  //   100,
-  //   105,
-  //   118,
-  //   100,
-  //   105,
-  //   118,
-  //   100,
-  //   105,
-  //   118,
-  //   100,
-  //   105,
-  //   118,
-  //   110,
-  //   111,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   110,
-  //   111,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   115,
-  //   99,
-  //   114,
-  //   105,
-  //   112,
-  //   116,
-  //   100,
-  //   105,
-  //   118
-  // ],
-  // _id: "5d2769a8653e748a1ce90c29",
-  // title: "Reductress » Women's News. Feminized.",
-  // __v: 0
+  tags: [
+    100,
+    105,
+    118,
+    110,
+    97,
+    118,
+    100,
+    105,
+    118,
+    100,
+    105,
+    118,
+    100,
+    105,
+    118,
+    100,
+    105,
+    118,
+    110,
+    111,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    110,
+    111,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    115,
+    99,
+    114,
+    105,
+    112,
+    116,
+    100,
+    105,
+    118
+  ],
+  _id: "5d2769a8653e748a1ce90c29",
+  title: "Reductress » Women's News. Feminized.",
+  __v: 0
 }
 
 const Tone = require("tone");
@@ -178,6 +178,13 @@ class App extends Component {
     // this.getBooks();
   };
 
+  schedulePlay = (note, length, time, synth) => {
+    const triggerFunc = (triggerTime) => {
+      synth.triggerAttackRelease(note, length, triggerTime)
+    }
+    Tone.Transport.schedule(triggerFunc, time)
+  }
+
   playSynth = () => {
 
 
@@ -190,13 +197,21 @@ class App extends Component {
 
 
 
+   
+
+
+    exampleObject.tags.forEach((tag, index) => {
+      this.schedulePlay(this.getNoteObject()[tag], '8n', index, synth)
+    })
+    
     // schedule a series of notes to play as soon as the page loads
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[0]], '4n', '8n')
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[2]], '8n', Tone.Time('4n') + Tone.Time('8n'))
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[3]], '16n', '2n')
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[5]], '16n', Tone.Time('2n') + Tone.Time('8t'))
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[7]], '16', Tone.Time('2n') + Tone.Time('8t') * 2)
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[76]], '2n', '0:3')
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[0]], '4n', '8n')
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[2]], '8n', Tone.Time('4n') + Tone.Time('8n'))
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[3]], '16n', '2n')
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[5]], '16n', Tone.Time('2n') + Tone.Time('8t'))
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[7]], '16', Tone.Time('2n') + Tone.Time('8t') * 2)
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[76]], '2n', '0:3')
+    Tone.Transport.toggle()
 
     this.state.audioContext.resume().then(() => {
       console.log('Playback resumed successfully');
