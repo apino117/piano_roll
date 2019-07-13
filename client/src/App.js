@@ -107,11 +107,6 @@ const exampleObject = {
   __v: 0
 }
 
-const midiNotesObject = {
-
-}
-
-
 const Tone = require("tone");
 
 class App extends Component {
@@ -162,20 +157,26 @@ class App extends Component {
   }
 
   handleInputChange = event => {
+
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
+
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
 
-    const urlToScrape = this.state.q;
+    const urlToScrape = {
+      url: this.state.q
+    };
 
-    API.saveWebsite(urlToScrape);
+    // API.saveWebsite(urlToScrape);
 
-    console.log(urlToScrape);
+    API.storeUrl(urlToScrape);
+
+    // console.log(urlToScrape);
 
     this.setState({
       q: " "
