@@ -174,7 +174,8 @@ class App extends Component {
 
     // API.saveWebsite(urlToScrape);
 
-    API.storeUrl(urlToScrape);
+    API.storeUrl(urlToScrape)
+    .then(() => API.retrieveUrl(urlToScrape));
 
     // console.log(urlToScrape);
 
