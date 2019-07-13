@@ -168,11 +168,15 @@ class App extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    const urlToScrape = this.state.q;
+    const urlToScrape = {
+      url: this.state.q
+    };
 
-    API.saveWebsite(urlToScrape);
+    // API.saveWebsite(urlToScrape);
 
-    console.log(urlToScrape);
+    API.storeUrl(urlToScrape);
+
+    // console.log(urlToScrape);
 
     this.setState({
       q: " "
