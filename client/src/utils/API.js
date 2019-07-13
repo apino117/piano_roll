@@ -12,10 +12,12 @@ export default {
         return axios.get("api/url:id", idOfWebsite);
     },
 
-    scrapeFromURl: (idFromDatabase) => {
-
+    returnObject: (urlToFindObject) => {
+        console.log(`this is the id of the website function: ${urlToFindObject}`);
+        let dataObject = axios.get("api/url:id", urlToFindObject);
+        console.log("this is the data object", dataObject);
+        return dataObject;
     },
-
 
 
     // scrapeWebsite: (q) => {
@@ -26,7 +28,7 @@ export default {
         alert(thingToSay)
     },
 
-    scrapeData: function(websiteData) {
+    scrapeData: function (websiteData) {
         return axios.get(websiteData)
     },
 
@@ -34,7 +36,7 @@ export default {
     // {axios.get(wb)}
     // return 
 
-    saveWebsite:  websiteData => {
+    saveWebsite: websiteData => {
         console.log("inside savewebsite " + websiteData);
         return axios.post("/api/fetch", websiteData)
     },
