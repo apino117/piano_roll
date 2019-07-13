@@ -1,10 +1,19 @@
 const db = require("../models");
 const scrape = require("../scripts/scrape");
+const url = require("./urlController");
 
 
 let useThisUrl = "https://getbootstrap.com/"
 
 module.exports = {
+
+
+    // findUrl: function (req, res) {
+
+    //     url.findById
+
+
+    // },
     
 
     // scrapeAndSave: function (useThisUrl) {
