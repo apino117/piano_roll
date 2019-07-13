@@ -7,6 +7,17 @@ export default {
         return axios.post("api/url", nameOfWebsite);
     },
 
+    retrieveUrl: (idOfWebsite) => {
+        console.log(`this is the id of the website function: ${idOfWebsite}`);
+        return axios.get("api/url:id", idOfWebsite);
+    },
+
+    scrapeFromURl: (idFromDatabase) => {
+
+    },
+
+
+
     // scrapeWebsite: (q) => {
     //     return axios.post("/api/fetch", { params: { q } })
     // },
