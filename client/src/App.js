@@ -112,6 +112,7 @@ const Tone = require("tone");
 class App extends Component {
 
   state = {
+    objectForNotes: {},
     audioContext: {},
     websites: [],
     q: ""
@@ -170,7 +171,7 @@ class App extends Component {
 
     // console.log("this is the objectToUse: ", objectToUse);
 
-    // console.log(urlToScrape);
+    console.log(urlToScrape);
 
     this.setState({
       q: " "
