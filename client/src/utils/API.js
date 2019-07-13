@@ -9,7 +9,8 @@ export default {
 
     retrieveUrl: (idOfWebsite) => {
         console.log(`this is the id of the website function: ${idOfWebsite}`);
-        return axios.get("api/url:id", idOfWebsite);
+        console.log(idOfWebsite)
+        return axios.get(`api/url/${idOfWebsite}`);
     },
 
     returnObject: (urlToFindObject) => {
