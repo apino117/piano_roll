@@ -171,7 +171,7 @@ class App extends Component {
 
     // console.log("this is the objectToUse: ", objectToUse);
 
-    console.log(urlToScrape);
+    // console.log(urlToScrape);
 
     this.setState({
       q: " "
