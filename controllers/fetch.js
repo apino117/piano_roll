@@ -3,39 +3,9 @@ const scrape = require("../scripts/scrape");
 const url = require("./urlController");
 
 
-let useThisUrl = "https://getbootstrap.com/"
+let useThisUrl = "https://getbootstrap.com/";
 
 module.exports = {
-
-
-    // findUrl: function (req, res) {
-
-    //     url.findById
-
-
-    // },
-    
-
-    // scrapeAndSave: function (useThisUrl) {
-
-        
-
-    //     return scrape(useThisUrl)
-    //         .then(function (websites) {
-    //             console.log("websites " + websites)
-    //             return db.Website.create(websites);
-    //         })
-    //         .then(function () {
-    //             res.json({
-    //                 message: "scrape done"
-    //             })
-    //         })
-    //         .catch(function (err) {
-    //             res.json({
-    //                 message: "this is an error " + err
-    //             })
-    //         })
-    // },
 
     scrapedWebsites: function (req, res) {
 
@@ -60,7 +30,6 @@ module.exports = {
             })
     },
     create: function (req, res) {
-
         //expected data should look like {  url: "sgafafa", name:"fasfafa"}
         console.log("inside fetch controller passed data:")
         console.log(req.body);
@@ -68,4 +37,5 @@ module.exports = {
             .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
-    }, }
+    }
+ }
