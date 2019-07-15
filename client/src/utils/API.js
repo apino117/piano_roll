@@ -7,6 +7,20 @@ export default {
         return axios.post("api/url", nameOfWebsite);
     },
 
+    retrieveUrl: (idOfWebsite) => {
+        console.log(`this is the id of the website function: ${idOfWebsite.url}`);
+        console.log(idOfWebsite)
+        return axios.get(`api/url/${idOfWebsite.url}`);
+    },
+
+    returnObject: (urlToFindObject) => {
+        console.log(`this is the id of the website function: ${urlToFindObject}`);
+        let dataObject = axios.get("api/url:id", urlToFindObject);
+        console.log("this is the data object", dataObject);
+        return dataObject;
+    },
+
+
     // scrapeWebsite: (q) => {
     //     return axios.post("/api/fetch", { params: { q } })
     // },
@@ -15,7 +29,7 @@ export default {
         alert(thingToSay)
     },
 
-    scrapeData: function(websiteData) {
+    scrapeData: function (websiteData) {
         return axios.get(websiteData)
     },
 
@@ -23,7 +37,7 @@ export default {
     // {axios.get(wb)}
     // return 
 
-    saveWebsite:  websiteData => {
+    saveWebsite: websiteData => {
         console.log("inside savewebsite " + websiteData);
         return axios.post("/api/fetch", websiteData)
     },

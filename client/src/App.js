@@ -112,6 +112,7 @@ const Tone = require("tone");
 class App extends Component {
 
   state = {
+    objectForNotes: {},
     audioContext: {},
     websites: [],
     q: ""
@@ -135,18 +136,7 @@ class App extends Component {
     return noteObj;
   }
 
-  toneMap = (array) => {
 
-    for (let i = 0; i < array.length; i++) {
-
-      if (array[i] === 100) {
-
-        return "C4"
-
-      }
-
-    };
-  }
 
   componentDidMount = () => {
 
@@ -174,7 +164,12 @@ class App extends Component {
 
     // API.saveWebsite(urlToScrape);
 
-    API.storeUrl(urlToScrape);
+    API.storeUrl(urlToScrape)
+    .then(() => API.retrieveUrl(urlToScrape));
+
+    // let objectToUse = API.retrieveUrl(urlToScrape);
+
+    // console.log("this is the objectToUse: ", objectToUse);
 
     // console.log(urlToScrape);
 
@@ -183,6 +178,13 @@ class App extends Component {
     });
     // this.getBooks();
   };
+
+  schedulePlay = (note, length, time, synth) => {
+    const triggerFunc = (triggerTime) => {
+      synth.triggerAttackRelease(note, length, triggerTime)
+    }
+    Tone.Transport.schedule(triggerFunc, time)
+  }
 
   playSynth = () => {
 
@@ -196,13 +198,21 @@ class App extends Component {
 
 
 
+   
+
+
+    exampleObject.tags.forEach((tag, index) => {
+      this.schedulePlay(this.getNoteObject()[tag], '8n', index, synth)
+    })
+    
     // schedule a series of notes to play as soon as the page loads
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[0]], '4n', '8n')
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[2]], '8n', Tone.Time('4n') + Tone.Time('8n'))
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[3]], '16n', '2n')
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[5]], '16n', Tone.Time('2n') + Tone.Time('8t'))
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[7]], '16', Tone.Time('2n') + Tone.Time('8t') * 2)
-    synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[76]], '2n', '0:3')
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[0]], '4n', '8n')
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[2]], '8n', Tone.Time('4n') + Tone.Time('8n'))
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[3]], '16n', '2n')
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[5]], '16n', Tone.Time('2n') + Tone.Time('8t'))
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[7]], '16', Tone.Time('2n') + Tone.Time('8t') * 2)
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[76]], '2n', '0:3')
+    Tone.Transport.toggle()
 
     this.state.audioContext.resume().then(() => {
       console.log('Playback resumed successfully');
