@@ -7,7 +7,7 @@ const passportRoutes = require("./passport")
 router.use("/api", apiRoutes);
 
 // Passport routes(?)
-router.use("/", passportRoutes)
+// router.use("/", passportRoutes)
 
 // If no API routes are hit, send the React app
 router.use(function (req, res) {
