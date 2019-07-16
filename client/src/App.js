@@ -191,7 +191,7 @@ class App extends Component {
 
     const synth = new Tone.FMSynth().toMaster();
 
-
+         
     // exampleObject.tags.forEach((tag) => {
     //   synth.triggerAttackRelease(this.getNoteObject()[tag], '2n', Tone.Time('2n') + Tone.Time('4n'))
     // });
@@ -202,9 +202,24 @@ class App extends Component {
 
 
     exampleObject.tags.forEach((tag, index) => {
-      this.schedulePlay(this.getNoteObject()[tag], '8n', index, synth)
+      this.schedulePlay(this.getNoteObject()[tag], '16n', index, synth)
     })
-    
+    synth.harmonicity.value = 0.6;
+    synth.detune.value = -1200;
+    synth.modulationIndex.value = 20;
+    synth.oscillator.type = "sine";
+    synth.envelope.attack = 0.01;
+    synth.envelope.decay = 0.01;
+    synth.envelope.sustain = 1;
+    synth.envelope.release = 0.08;
+    synth.modulation.type = "square";
+    synth.modulationEnvelope.attack = 0.07;
+    synth.modulationEnvelope.decay = 1;
+    synth.modulationEnvelope.sustain = 1; 
+    synth.modulationEnvelope.release = 1;
+    synth.volume.value = -12;
+    // synth.partials = [1, 0.2, 0.01, 0.001];
+    // synth.type = 'sine';
     // schedule a series of notes to play as soon as the page loads
     // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[0]], '4n', '8n')
     // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[2]], '8n', Tone.Time('4n') + Tone.Time('8n'))
@@ -213,7 +228,7 @@ class App extends Component {
     // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[7]], '16', Tone.Time('2n') + Tone.Time('8t') * 2)
     // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[76]], '2n', '0:3')
     Tone.Transport.toggle()
-
+    Tone.Transport.bpm.value = 250; //nice to have this be adjustible by the user..
     this.state.audioContext.resume().then(() => {
       console.log('Playback resumed successfully');
     });
