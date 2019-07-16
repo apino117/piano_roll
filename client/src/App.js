@@ -204,21 +204,22 @@ class App extends Component {
     exampleObject.tags.forEach((tag, index) => {
       this.schedulePlay(this.getNoteObject()[tag], '16n', index, synth)
     })
-    synth.harmonicity.value = 0.6;
+    synth.harmonicity.value = 0.5;
     synth.detune.value = -1200;
-    synth.modulationIndex.value = 20;
+    synth.modulationIndex.value = 60;
     synth.oscillator.type = "sine";
+    synth.oscillator.partials = [0.5, 0.02, 0.006, 0.001];
     synth.envelope.attack = 0.01;
     synth.envelope.decay = 0.01;
-    synth.envelope.sustain = 1;
-    synth.envelope.release = 0.08;
-    synth.modulation.type = "square";
-    synth.modulationEnvelope.attack = 0.07;
-    synth.modulationEnvelope.decay = 1;
-    synth.modulationEnvelope.sustain = 1; 
-    synth.modulationEnvelope.release = 1;
+    synth.envelope.sustain = 2;
+    synth.envelope.release = 2;
+    synth.modulation.type = "triangle";
+    synth.modulationEnvelope.attack = 1;
+    synth.modulationEnvelope.decay = 2;
+    synth.modulationEnvelope.sustain = 2; 
+    synth.modulationEnvelope.release = 2;
     synth.volume.value = -12;
-    // synth.partials = [1, 0.2, 0.01, 0.001];
+
     // synth.type = 'sine';
     // schedule a series of notes to play as soon as the page loads
     // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[0]], '4n', '8n')
