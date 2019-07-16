@@ -46,7 +46,10 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 // require('./routes/routes')(app, passport); // load our routes and pass in our app and fully configured passport
-
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 // Add routes
 app.use(routes);
 
@@ -64,10 +67,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/pianoRollDB"
 // COnnect to the mongo db
 mongoose.connect(MONGODB_URI || `mongodb://${process.env.MLAB_DBNAME}:${process.env.MLAB_PASSWORD}@ds245927.mlab.com:45927/heroku_lm2dk7qt`);
 
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+
 
 
 app.listen(PORT, function () {
