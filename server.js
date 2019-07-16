@@ -50,14 +50,19 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // Add routes
 app.use(routes);
 
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true }, function (err) {
-  if (err) {
-    console.log(err)
-  }
-  else { console.log("successfully connected to database!") };
-})
+// // This was the old way to Connect to the Mongo DB
+// mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true }, function (err) {
+//   if (err) {
+//     console.log(err)
+//   }
+//   else { console.log("successfully connected to database!") };
+// })
 
+// If deployed, use the deployed database, otherwise default to the local 
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/pianoRollDB"
+
+// COnnect to the mongo db
+mongoose.connect(MONGODB_URI || `mongodb://${process.env.MLAB_DBNAME}:${process.env.MLAB_PASSWORD}@ds245927.mlab.com:45927/heroku_lm2dk7qt`);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

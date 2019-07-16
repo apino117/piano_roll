@@ -2,23 +2,30 @@ import axios from "axios";
 
 export default {
 
-    storeUrl: (nameOfWebsite) => {
+    storeUrl: nameOfWebsite => {
         console.log(`this is the store url function and name of website: ${nameOfWebsite}`);
         return axios.post("api/url", nameOfWebsite);
+        // console.log("this is the second console log: ", nameOfWebsite);
+        // return axios.post("api/url", nameOfWebsite);
     },
 
-    retrieveUrl: (idOfWebsite) => {
-        console.log(`this is the id of the website function: ${idOfWebsite.url}`);
-        console.log(idOfWebsite)
-        return axios.get(`api/url/${idOfWebsite.url}`);
+    getUrl: q => {
+        console.log("this is the getUrl function", q);
+        return axios.get(`api/url/${q}`)
     },
 
-    returnObject: (urlToFindObject) => {
-        console.log(`this is the id of the website function: ${urlToFindObject}`);
-        let dataObject = axios.get("api/url:id", urlToFindObject);
-        console.log("this is the data object", dataObject);
-        return dataObject;
-    },
+    // retrieveUrl: (idOfWebsite) => {
+    //     console.log(`this is the id of the website function: ${idOfWebsite._id}`);
+    //     console.log(idOfWebsite)
+    //     // return axios.get(`api/url/${idOfWebsite.url}`);
+    // },
+
+    // returnObject: (urlToFindObject) => {
+    //     console.log(`this is the id of the website function: ${urlToFindObject}`);
+    //     let dataObject = axios.get("api/url:id", urlToFindObject);
+    //     console.log("this is the data object", dataObject);
+    //     return dataObject;
+    // },
 
 
     // scrapeWebsite: (q) => {
