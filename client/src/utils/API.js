@@ -11,7 +11,7 @@ export default {
 
     getUrl: q => {
         console.log("this is the getUrl function", q);
-        return axios.get("api/url", { params: { q: "url:" + q } })
+        return axios.get(`api/url/${q}`)
     },
 
     // retrieveUrl: (idOfWebsite) => {
