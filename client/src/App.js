@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Form from "./components/Form/index";
 import API from "./utils/API";
+import SearchForm from "./components/SearchForm";
 
 const exampleObject = {
   tags: [
@@ -112,6 +113,7 @@ const Tone = require("tone");
 class App extends Component {
 
   state = {
+    title: "Reductress » Women's News. Feminized.",
     objectForNotes: {},
     audioContext: {},
     websites: [],
@@ -182,6 +184,21 @@ class App extends Component {
     // this.getBooks();
   };
 
+  handleTitleSubmit = event => {
+    event.preventDefault();
+
+
+    console.log("title submitted!")
+    const title = {
+      title: exampleObject.title
+    };
+
+    this.setState({
+      q: " "
+    });
+    // this.getBooks();
+  };
+
   schedulePlay = (note, length, time, synth) => {
     const triggerFunc = (triggerTime) => {
       synth.triggerAttackRelease(note, length, triggerTime)
@@ -230,6 +247,15 @@ class App extends Component {
   render() {
     return (
       <>
+      <SearchForm
+      
+      handleInputChange={this.handleInputChange}
+      title={this.state.title}//
+      handleTitleSubmit={this.handleTitleSubmit}
+
+      >
+        
+      </SearchForm>
         <div className="container" id="main-content-container">
           <div className="row" id="main-content-row">
 
@@ -238,13 +264,13 @@ class App extends Component {
             <div className="col-12" id="main-content-column">
 
               <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth</button>
+              
 
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
                 q={this.state.q}
               />
-
               <div class="container">
 
                 <div class="jumbotron text-center">
