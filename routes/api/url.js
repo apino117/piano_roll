@@ -13,14 +13,15 @@ router
 //     .get(urlController.findById);
 
 // Matches with /api/url/:url
-// router
-//     .route("/:url")
-//     .get(urlController.findByUrl)
-
-// Matches with /api/url/:title
 router
-    .route("/:title")
-    .get(urlController.findByTitle)
+    .route("/:url")
+    .get(urlController.findByUrl)
+
+// Matches with /api/url/whateverthetitleisnoquotesbutstill all the spaces(?)
+// Ex: http://localhost:3001/api/url/Q-Tip (musician) - Wikipedia
+// router
+//     .route("/:title")
+//     .get(urlController.findByTitle)
 
 
 
