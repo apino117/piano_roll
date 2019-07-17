@@ -18,8 +18,11 @@ function SearchForm(props) {
           id="title"
         />
         <datalist id="titles">
-         
-            <option value={props.title} key={props.title} />
+
+          {props.titles.map(title => (
+            <option value={title} key={title} />
+          ))}
+          {/* <option value={props.titles[0]} key={props.titles[0]} /> */}
         </datalist>
         <button type="submit" onClick={props.handleTitleSubmit} className="btn btn-success">
           Search

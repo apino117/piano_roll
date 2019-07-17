@@ -16,18 +16,18 @@ module.exports = {
     //         .then(dbModel => res.json(dbModel))
     //         .catch(err => res.status(422).json(err));
     // },
-    findByUrl: function (req, res) {
-        db.Url
-            .findOne({ "url": req.params.url })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
-    // findByTitle: function (req, res) {
+    // findByUrl: function (req, res) {
     //     db.Url
-    //         .findOne({ "title": req.params.title })
+    //         .findOne({ "url": req.params.url })
     //         .then(dbModel => res.json(dbModel))
     //         .catch(err => res.status(422).json(err));
     // },
+    findByTitle: function (req, res) {
+        db.Url
+            .findOne({ "title": req.params.title })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     create: function (req, res) {
 
         console.log("this is the req.body: ", req.body)
