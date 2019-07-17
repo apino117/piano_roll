@@ -172,6 +172,7 @@ class App extends Component {
       // .then(res => console.log(res.data.title))
       // .then(res => this.setState({ titles: res.data }))
       .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
+      .then(() => console.log(this.state.titles))
 
       .catch(err => console.log(err));
 
@@ -214,9 +215,10 @@ class App extends Component {
   handleTitleSubmit = event => {
     event.preventDefault();
 
+    console.log(this.state.titles);
 
-    console.log("title submitted!")
-    console.log(this.state.titles)
+    console.log("title submitted!");
+    
     const title = {
       title: exampleObject.title
     };
@@ -273,13 +275,20 @@ class App extends Component {
         <SearchForm
 
           handleInputChange={this.handleSearchInput}
-          // title={this.state.title}
           handleTitleSubmit={this.handleTitleSubmit}
-          titles={this.state.websites}
+          titles={this.state.titles}
 
         >
 
         </SearchForm>
+
+
+
+
+
+
+
+        {/* ========================================================================= */}
         <div className="container" id="main-content-container">
           <div className="row" id="main-content-row">
 
