@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Form from "./components/Form/index";
 import API from "./utils/API";
 import SearchForm from "./components/SearchForm";
+import Alert from "./components/Alert/index";
 
 const exampleObject = {
   tags: [
@@ -120,7 +121,8 @@ class App extends Component {
     search: "",
     titles: [],
     results: [],
-    q: ""
+    q: "",
+    error: "",
   }
 
   mapToStandard = (number) => {
@@ -215,18 +217,23 @@ class App extends Component {
   handleTitleSubmit = event => {
     event.preventDefault();
 
-    console.log(this.state.titles);
+    console.log(this.state.search);
 
-    console.log("title submitted!");
-    
-    const title = {
-      title: exampleObject.title
-    };
+    API.getNoteObjectByTitle(this.state.search)
+      .then(res => {
+        if (res.data.status === "error") {
+          throw new Error(res.data.message);
+        }
+        this.setState({ results: res.data.message, error: "" });
+      })
+      .catch(err => this.setState({ error: err.message }));
 
+    // const title = {
+    //   title: exampleObject.title
+    // };
     this.setState({
-      q: " "
+      search: " "
     });
-    // this.getBooks();
   };
 
   schedulePlay = (note, length, time, synth) => {
@@ -266,21 +273,23 @@ class App extends Component {
 
   }
 
-  // returnValue()
-
-
   render() {
     return (
       <>
+
+        <Alert
+          type="danger"
+          style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
+        >
+          {this.state.error}
+        </Alert>
         <SearchForm
 
           handleInputChange={this.handleSearchInput}
           handleTitleSubmit={this.handleTitleSubmit}
           titles={this.state.titles}
 
-        >
-
-        </SearchForm>
+        ></SearchForm>
 
 
 
@@ -297,14 +306,12 @@ class App extends Component {
             <div className="col-12" id="main-content-column">
 
               <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth</button>
-
-
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
                 q={this.state.q}
               />
-              <div class="container">
+              {/* <div class="container">
 
                 <div class="jumbotron text-center">
                   <h1><span class="fa fa-lock"></span> Node Authentication</h1>
@@ -315,22 +322,22 @@ class App extends Component {
                   <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
                 </div>
 
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
-        <Router>
+        {/* <Router>
           <div>
-            <Switch>
+            <Switch> */}
               {/* <Route exact path="/" component={Home} />
               <Route exact path="/saved" component={Saved} />
               <Route component={NoMatch} /> */}
-              <Route exact path="/login" component={Login} />
+              {/* <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile" component={Profile} />
             </Switch>
           </div>
-        </Router>
+        </Router> */}
       </>
     );
   }
