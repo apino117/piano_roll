@@ -23,7 +23,8 @@ class App extends Component {
     results: [],
     q: "",
     error: "",
-    loadMessage: ""
+    loadMessage: "",
+    searchMessage: "",
   }
 
   mapToStandard = (number) => {
@@ -131,7 +132,8 @@ class App extends Component {
       })
 
      this.setState({
-       loadMessage: "Synth Loaded"
+       loadMessage: "Synth Loaded",
+       searchMessage: this.state.search
      }) 
   };
 
@@ -204,7 +206,7 @@ class App extends Component {
 
             <div className="col-12" id="main-content-column">
 
-              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.search}</button>
+              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</button>
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
