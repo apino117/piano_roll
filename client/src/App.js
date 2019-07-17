@@ -114,10 +114,8 @@ const Tone = require("tone");
 class App extends Component {
 
   state = {
-    // title: "Reductress » Women's News. Feminized.",
     objectForNotes: {},
     audioContext: {},
-    // websites: [],
     search: "",
     titles: [],
     results: [],
@@ -221,12 +219,21 @@ class App extends Component {
 
     API.getNoteObjectByTitle(this.state.search)
       .then(res => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
+        console.log("this is the result data", res.data)
+        this.setState({
+          noteObj: res.data
+        })
       })
-      .catch(err => this.setState({ error: err.message }));
+      .then(() => {
+        console.log("this is the noteObj", this.state.noteObj)
+      })
+      // .then(res => {
+      //   if (res.data.status === "error") {
+      //     throw new Error(res.data.message);
+      //   }
+      //   this.setState({ results: res.data.message, error: "" });
+      // })
+      // .catch(err => this.setState({ error: err.message }));
 
     // const title = {
     //   title: exampleObject.title
@@ -305,7 +312,7 @@ class App extends Component {
 
             <div className="col-12" id="main-content-column">
 
-              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth</button>
+              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.search}</button>
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
@@ -329,10 +336,10 @@ class App extends Component {
         {/* <Router>
           <div>
             <Switch> */}
-              {/* <Route exact path="/" component={Home} />
+        {/* <Route exact path="/" component={Home} />
               <Route exact path="/saved" component={Saved} />
               <Route component={NoMatch} /> */}
-              {/* <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile" component={Profile} />
             </Switch>
