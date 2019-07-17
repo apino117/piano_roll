@@ -7,12 +7,14 @@ const UrlSchema = new Schema({
   url: {
     type: String,
     required: true,
+    unique: true,
   },
   tags: {
     type: Array,
   },
   title: {
     type: String,
+    unique: true,
   }
 
 });

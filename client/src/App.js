@@ -1,113 +1,15 @@
 import React, { Component } from "react";
 
 // Router Stuff
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Profile from "./pages/Profile";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import Login from "./pages/Login";
+// import Signup from "./pages/Signup";
+// import Profile from "./pages/Profile";
 import Form from "./components/Form/index";
 import API from "./utils/API";
 import SearchForm from "./components/SearchForm";
 import Alert from "./components/Alert/index";
-
-// const exampleObject = {
-//   tags: [
-//     1039,
-//     105,
-//     118,
-//     110,
-//     97,
-//     118,
-//     100,
-//     105,
-//     1198,
-//     100,
-//     105,
-//     118,
-//     100,
-//     105,
-//     118,
-//     100,
-//     105,
-//     118,
-//     1190,
-//     111,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     110,
-//     111,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     115,
-//     99,
-//     114,
-//     105,
-//     112,
-//     116,
-//     100,
-//     105,
-//     118
-//   ],
-//   _id: "5d2769a8653e748a1ce90c29",
-//   title: "Reductress » Women's News. Feminized.",
-//   __v: 0
-// }
+import Button from "./components/Button";
 
 const Tone = require("tone");
 
@@ -121,6 +23,8 @@ class App extends Component {
     results: [],
     q: "",
     error: "",
+    loadMessage: "",
+    searchMessage: "",
   }
 
   mapToStandard = (number) => {
@@ -132,6 +36,13 @@ class App extends Component {
       // console.log(numberToReturn);
     }
     return numberToReturn
+  }
+
+  runTheList = () => {
+    API.getUrlsList()
+      .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
+      .then(() => console.log(this.state.titles))
+      .catch(err => console.log(err));
   }
 
   getNoteObject = () => {
@@ -152,7 +63,6 @@ class App extends Component {
     return noteObj;
   }
 
-
   getTitlesFromResults = (array) => {
 
     let justTitles = [];
@@ -167,19 +77,14 @@ class App extends Component {
 
   componentDidMount = () => {
 
-    API.getUrlsList()
-      // .then(res => this.getTitlesFromResults(res.data))
-      // .then(res => console.log(res.data.title))
-      // .then(res => this.setState({ titles: res.data }))
-      .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
-      .then(() => console.log(this.state.titles))
-
-      .catch(err => console.log(err));
+    this.runTheList();
 
     const context = new AudioContext();
 
-    this.setState({ audioContext: context });
-
+    this.setState({
+      audioContext: context,
+      loadMessage: "Load Synth"
+    });
   }
 
   handleInputChange = event => {
@@ -204,16 +109,22 @@ class App extends Component {
     };
 
     API.storeUrl(urlToScrape)
-      .then(() => API.getUrl(urlToScrape.url));
+      .then(() => API.getUrl(urlToScrape.url))
+      .then(() => {
+        this.runTheList();
+      })
 
+      
     this.setState({
-      q: " "
+      q: " ",
     });
     // this.getBooks();
   };
 
   handleTitleSubmit = event => {
     event.preventDefault();
+
+    // alert("work!");
 
     console.log(this.state.search);
 
@@ -227,17 +138,11 @@ class App extends Component {
       .then(() => {
         console.log("this is the objectForNotes", this.state.objectForNotes)
       })
-      // .then(res => {
-      //   if (res.data.status === "error") {
-      //     throw new Error(res.data.message);
-      //   }
-      //   this.setState({ results: res.data.message, error: "" });
-      // })
-      // .catch(err => this.setState({ error: err.message }));
 
-    // this.setState({
-    //   search: " "
-    // });
+    this.setState({
+      loadMessage: "Synth Loaded",
+      searchMessage: this.state.search
+    })
   };
 
   schedulePlay = (note, length, time, synth) => {
@@ -293,13 +198,13 @@ class App extends Component {
           handleTitleSubmit={this.handleTitleSubmit}
           titles={this.state.titles}
 
-        ></SearchForm>
 
+        >
 
-
-
-
-
+        </SearchForm>
+        <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
+          {this.state.loadMessage}
+        </Button>
 
         {/* ========================================================================= */}
         <div className="container" id="main-content-container">
@@ -309,7 +214,7 @@ class App extends Component {
 
             <div className="col-12" id="main-content-column">
 
-              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.search}</button>
+              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</button>
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
