@@ -1,29 +1,15 @@
 const express = require("express");
-const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const routes = require("./routes")
-
-const passport = require('passport');
-const flash = require('connect-flash');
-
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
-
-
-// This second line is a test for the heroku autodeploy
 
 require('dotenv').config();
-// const passportSecret = process.env.PASSPORT_SECRET;
-
-// Configure middleware
 
 app.use(logger("dev")); // Use morgan logger for logging requests
 
-app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 
 // Parse request body as JSON
@@ -40,21 +26,11 @@ if (process.env.NODE_ENV === "production") {
 // Add routes
 app.use(routes);
 
-// // This was the old way to Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true }, function (err) {
-//   if (err) {
-//     console.log(err)
-//   }
-//   else { console.log("successfully connected to database!") };
-// })
-
 // If deployed, use the deployed database, otherwise default to the local 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/pianoRollDB"
 
 // COnnect to the mongo db
 mongoose.connect(MONGODB_URI || `mongodb://${process.env.MLAB_DBNAME}:${process.env.MLAB_PASSWORD}@ds245927.mlab.com:45927/heroku_lm2dk7qt`);
-
-
 
 
 app.listen(PORT, function () {
