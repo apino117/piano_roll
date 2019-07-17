@@ -18,6 +18,22 @@ export default {
         return axios.get("api/url");
     },
 
+    getNoteObjectByTitle: (title) => {
+        return axios.get(`api/url/${title}`)
+    },
+
+    alert: (thingToSay) => {
+        alert(thingToSay)
+    },
+
+    scrapeData: function (websiteData) {
+        return axios.get(websiteData)
+    },
+
+    // scrapeData:(websiteData)
+    // {axios.get(wb)}
+    // return 
+
     // retrieveUrl: (idOfWebsite) => {
     //     console.log(`this is the id of the website function: ${idOfWebsite._id}`);
     //     console.log(idOfWebsite)
@@ -35,18 +51,6 @@ export default {
     // scrapeWebsite: (q) => {
     //     return axios.post("/api/fetch", { params: { q } })
     // },
-
-    alert: (thingToSay) => {
-        alert(thingToSay)
-    },
-
-    scrapeData: function (websiteData) {
-        return axios.get(websiteData)
-    },
-
-    // scrapeData:(websiteData)
-    // {axios.get(wb)}
-    // return 
 
     saveWebsite: websiteData => {
         console.log("inside savewebsite " + websiteData);
