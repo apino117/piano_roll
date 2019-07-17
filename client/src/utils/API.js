@@ -14,6 +14,10 @@ export default {
         return axios.get(`api/url/${q}`)
     },
 
+    getUrlsList: () => {
+        return axios.get("api/url");
+    },
+
     // retrieveUrl: (idOfWebsite) => {
     //     console.log(`this is the id of the website function: ${idOfWebsite._id}`);
     //     console.log(idOfWebsite)
