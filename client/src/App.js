@@ -113,10 +113,11 @@ const Tone = require("tone");
 class App extends Component {
 
   state = {
-    title: "Reductress » Women's News. Feminized.",
+    // title: "Reductress » Women's News. Feminized.",
     objectForNotes: {},
     audioContext: {},
-    websites: [],
+    // websites: [],
+    titles: [],
     q: ""
   }
 
@@ -153,6 +154,11 @@ class App extends Component {
 
   componentDidMount = () => {
 
+    API.getUrlsList()
+      .then(res => console.log(res.data[20].title))
+      // .then(res => this.setState({ titles: res.data }))
+      .catch(err => console.log(err));
+
     const context = new AudioContext();
 
     this.setState({ audioContext: context });
@@ -175,19 +181,8 @@ class App extends Component {
       url: this.state.q
     };
 
-    // API.saveWebsite(urlToScrape);
-
-
-
     API.storeUrl(urlToScrape)
       .then(() => API.getUrl(urlToScrape.url));
-    // .then(() => API.retrieveUrl(urlToScrape));
-
-    // let objectToUse = API.retrieveUrl(urlToScrape);
-
-    // console.log("this is the objectToUse: ", objectToUse);
-
-    // console.log(urlToScrape);
 
     this.setState({
       q: " "
@@ -256,7 +251,7 @@ class App extends Component {
         <SearchForm
 
           handleInputChange={this.handleInputChange}
-          title={this.state.title}//
+          // title={this.state.title}
           handleTitleSubmit={this.handleTitleSubmit}
           titles={this.state.websites}
 
