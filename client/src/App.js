@@ -153,12 +153,26 @@ class App extends Component {
   }
 
 
+  getTitlesFromResults = (array) => {
+
+    let justTitles = [];
+
+    for (let i = 0; i < array.length; i++) {
+      justTitles.push(array[i].title)
+    };
+
+    // console.log(justTitles);
+    return justTitles;
+  }
 
   componentDidMount = () => {
 
     API.getUrlsList()
-      .then(res => console.log(res.data[20].title))
+      // .then(res => this.getTitlesFromResults(res.data))
+      // .then(res => console.log(res.data.title))
       // .then(res => this.setState({ titles: res.data }))
+      .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
+
       .catch(err => console.log(err));
 
     const context = new AudioContext();
@@ -177,7 +191,7 @@ class App extends Component {
   };
 
   handleSearchInput = event => {
-    this.setState({search : event.target.value});
+    this.setState({ search: event.target.value });
     console.log(this.state.search)
   }
 
@@ -202,6 +216,7 @@ class App extends Component {
 
 
     console.log("title submitted!")
+    console.log(this.state.titles)
     const title = {
       title: exampleObject.title
     };
