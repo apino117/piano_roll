@@ -9,6 +9,7 @@ import Form from "./components/Form/index";
 import API from "./utils/API";
 import SearchForm from "./components/SearchForm";
 import Alert from "./components/Alert/index";
+import Button from "./components/Button";
 
 const Tone = require("tone");
 
@@ -22,19 +23,7 @@ class App extends Component {
     results: [],
     q: "",
     error: "",
-    loadMessage: true
-  }
-
-  makeLoadMessage = () => {
-
-    let elMessagio;
-
-    if (!this.state.loadMessage) {
-      let elMessagio = "Synth Loaded"
-    } else {
-      let elMessagio = "Load Synth"
-    } return elMessagio;
-
+    loadMessage: ""
   }
 
   mapToStandard = (number) => {
@@ -84,11 +73,13 @@ class App extends Component {
       .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
       .then(() => console.log(this.state.titles))
       .catch(err => console.log(err));
-    
+
     const context = new AudioContext();
 
-    this.setState({ audioContext: context });
-
+    this.setState({
+      audioContext: context,
+      loadMessage: "Load Synth"
+    });
   }
 
   handleInputChange = event => {
@@ -116,13 +107,15 @@ class App extends Component {
       .then(() => API.getUrl(urlToScrape.url));
 
     this.setState({
-      q: " "
+      q: " ",
     });
     // this.getBooks();
   };
 
   handleTitleSubmit = event => {
     event.preventDefault();
+
+    // alert("work!");
 
     console.log(this.state.search);
 
@@ -136,6 +129,10 @@ class App extends Component {
       .then(() => {
         console.log("this is the objectForNotes", this.state.objectForNotes)
       })
+
+     this.setState({
+       loadMessage: "Synth Loaded"
+     }) 
   };
 
   schedulePlay = (note, length, time, synth) => {
@@ -191,7 +188,13 @@ class App extends Component {
           handleTitleSubmit={this.handleTitleSubmit}
           titles={this.state.titles}
 
-        ></SearchForm>
+
+        >
+          
+        </SearchForm>
+        <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
+          {this.state.loadMessage}
+        </Button>
 
         {/* ========================================================================= */}
         <div className="container" id="main-content-container">
