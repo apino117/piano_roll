@@ -19,15 +19,6 @@ const session = require('express-session');
 require('dotenv').config();
 // const passportSecret = process.env.PASSPORT_SECRET;
 
-// Our scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
-const axios = require("axios");
-const cheerio = require("cheerio");
-
-// Require all models
-const db = require("./models");
-
 // Configure middleware
 
 app.use(logger("dev")); // Use morgan logger for logging requests
@@ -46,7 +37,6 @@ app.use(express.static("public")); // Make public a static folder
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
-
 
 // require('./routes/routes')(app, passport); // load our routes and pass in our app and fully configured passport
 // Serve up static assets (usually on heroku)
