@@ -114,7 +114,7 @@ class App extends Component {
         this.runTheList();
       })
 
-      
+
     this.setState({
       q: " ",
     });
@@ -220,18 +220,6 @@ class App extends Component {
                 handleFormSubmit={this.handleFormSubmit}
                 q={this.state.q}
               />
-              {/* <div class="container">
-
-                <div class="jumbotron text-center">
-                  <h1><span class="fa fa-lock"></span> Node Authentication</h1>
-
-                  <p>Login or Register with:</p>
-
-                  <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-                  <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-                </div>
-
-              </div> */}
             </div>
           </div>
         </div>
