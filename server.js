@@ -32,12 +32,6 @@ app.use(express.json());
 
 app.use(express.static("public")); // Make public a static folder
 
-// required for passport
-// app.use(session({ secret: passportSecret })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-
 // require('./routes/routes')(app, passport); // load our routes and pass in our app and fully configured passport
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
