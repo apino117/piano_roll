@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
-// Router Stuff
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import Login from "./pages/Login";
-// import Signup from "./pages/Signup";
-// import Profile from "./pages/Profile";
+
 import Form from "./components/Form/index";
 import API from "./utils/API";
 import SearchForm from "./components/SearchForm";
@@ -223,18 +219,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-        {/* <Router>
-          <div>
-            <Switch> */}
-        {/* <Route exact path="/" component={Home} />
-              <Route exact path="/saved" component={Saved} />
-              <Route component={NoMatch} /> */}
-        {/* <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile" component={Profile} />
-            </Switch>
-          </div>
-        </Router> */}
       </>
     );
   }
