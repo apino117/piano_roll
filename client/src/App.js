@@ -295,6 +295,38 @@ class App extends Component {
 
         ></SearchForm>
 
+    exampleObject.tags.forEach((tag, index) => {
+      this.schedulePlay(this.getNoteObject()[tag], '16n', index, synth)
+    })
+    synth.harmonicity.value = 0.5;
+    synth.detune.value = -1200;
+    synth.modulationIndex.value = 60;
+    synth.oscillator.type = "sine";
+    synth.oscillator.partials = [0.5, 0.02, 0.006, 0.001];
+    synth.envelope.attack = 0.01;
+    synth.envelope.decay = 0.01;
+    synth.envelope.sustain = 2;
+    synth.envelope.release = 2;
+    synth.modulation.type = "triangle";
+    synth.modulationEnvelope.attack = 1;
+    synth.modulationEnvelope.decay = 2;
+    synth.modulationEnvelope.sustain = 2; 
+    synth.modulationEnvelope.release = 2;
+    synth.volume.value = -12;
+
+    // synth.type = 'sine';
+    // schedule a series of notes to play as soon as the page loads
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[0]], '4n', '8n')
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[2]], '8n', Tone.Time('4n') + Tone.Time('8n'))
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[3]], '16n', '2n')
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[5]], '16n', Tone.Time('2n') + Tone.Time('8t'))
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[7]], '16', Tone.Time('2n') + Tone.Time('8t') * 2)
+    // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[76]], '2n', '0:3')
+    Tone.Transport.toggle()
+    Tone.Transport.bpm.value = 250; //nice to have this be adjustible by the user..
+    this.state.audioContext.resume().then(() => {
+      console.log('Playback resumed successfully');
+    });
 
 
 
