@@ -7,7 +7,7 @@ const urlRoutes = require("./url")
 // We defined our routes inwebsite, this is gonna use them
 router.use("/website", websiteRoutes);
 router.use("/fetch", fetchRoutes);
-router.use("/Url", urlRoutes)
+router.use("/url", urlRoutes)
 
 // For anything else, render the html page
 // router.use(function (req, res) {
