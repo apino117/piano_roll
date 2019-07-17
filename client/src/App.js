@@ -7,105 +7,107 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Form from "./components/Form/index";
 import API from "./utils/API";
+import SearchForm from "./components/SearchForm";
+import Alert from "./components/Alert/index";
 
-const exampleObject = {
-  tags: [
-    100,
-    105,
-    118,
-    110,
-    97,
-    118,
-    100,
-    105,
-    118,
-    100,
-    105,
-    118,
-    100,
-    105,
-    118,
-    100,
-    105,
-    118,
-    110,
-    111,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    110,
-    111,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    115,
-    99,
-    114,
-    105,
-    112,
-    116,
-    100,
-    105,
-    118
-  ],
-  _id: "5d2769a8653e748a1ce90c29",
-  title: "Reductress » Women's News. Feminized.",
-  __v: 0
-}
+// const exampleObject = {
+//   tags: [
+//     1039,
+//     105,
+//     118,
+//     110,
+//     97,
+//     118,
+//     100,
+//     105,
+//     1198,
+//     100,
+//     105,
+//     118,
+//     100,
+//     105,
+//     118,
+//     100,
+//     105,
+//     118,
+//     1190,
+//     111,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     110,
+//     111,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     115,
+//     99,
+//     114,
+//     105,
+//     112,
+//     116,
+//     100,
+//     105,
+//     118
+//   ],
+//   _id: "5d2769a8653e748a1ce90c29",
+//   title: "Reductress » Women's News. Feminized.",
+//   __v: 0
+// }
 
 const Tone = require("tone");
 
@@ -114,8 +116,22 @@ class App extends Component {
   state = {
     objectForNotes: {},
     audioContext: {},
-    websites: [],
-    q: ""
+    search: "",
+    titles: [],
+    results: [],
+    q: "",
+    error: "",
+  }
+
+  mapToStandard = (number) => {
+
+    let numberToReturn = number;
+
+    while (numberToReturn > 127) {
+      numberToReturn -= 127;
+      // console.log(numberToReturn);
+    }
+    return numberToReturn
   }
 
   getNoteObject = () => {
@@ -137,8 +153,28 @@ class App extends Component {
   }
 
 
+  getTitlesFromResults = (array) => {
+
+    let justTitles = [];
+
+    for (let i = 0; i < array.length; i++) {
+      justTitles.push(array[i].title)
+    };
+
+    // console.log(justTitles);
+    return justTitles;
+  }
 
   componentDidMount = () => {
+
+    API.getUrlsList()
+      // .then(res => this.getTitlesFromResults(res.data))
+      // .then(res => console.log(res.data.title))
+      // .then(res => this.setState({ titles: res.data }))
+      .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
+      .then(() => console.log(this.state.titles))
+
+      .catch(err => console.log(err));
 
     const context = new AudioContext();
 
@@ -155,6 +191,11 @@ class App extends Component {
 
   };
 
+  handleSearchInput = event => {
+    this.setState({ search: event.target.value });
+    console.log(this.state.search)
+  }
+
   handleFormSubmit = event => {
     event.preventDefault();
 
@@ -162,21 +203,41 @@ class App extends Component {
       url: this.state.q
     };
 
-    // API.saveWebsite(urlToScrape);
-
     API.storeUrl(urlToScrape)
-    .then(() => API.retrieveUrl(urlToScrape));
-
-    // let objectToUse = API.retrieveUrl(urlToScrape);
-
-    // console.log("this is the objectToUse: ", objectToUse);
-
-    // console.log(urlToScrape);
+      .then(() => API.getUrl(urlToScrape.url));
 
     this.setState({
       q: " "
     });
     // this.getBooks();
+  };
+
+  handleTitleSubmit = event => {
+    event.preventDefault();
+
+    console.log(this.state.search);
+
+    API.getNoteObjectByTitle(this.state.search)
+      .then(res => {
+        console.log("this is the result data", res.data)
+        this.setState({
+          objectForNotes: res.data
+        })
+      })
+      .then(() => {
+        console.log("this is the objectForNotes", this.state.objectForNotes)
+      })
+      // .then(res => {
+      //   if (res.data.status === "error") {
+      //     throw new Error(res.data.message);
+      //   }
+      //   this.setState({ results: res.data.message, error: "" });
+      // })
+      // .catch(err => this.setState({ error: err.message }));
+
+    // this.setState({
+    //   search: " "
+    // });
   };
 
   schedulePlay = (note, length, time, synth) => {
@@ -190,16 +251,49 @@ class App extends Component {
 
 
     const synth = new Tone.FMSynth().toMaster();
+    this.state.objectForNotes.tags.forEach((tag, index) => {
+      this.schedulePlay(this.getNoteObject()[tag], '16n', index, synth)
+    })
+    synth.harmonicity.value = 0.6;
+    synth.detune.value = -1200;
+    synth.modulationIndex.value = 20;
+    synth.oscillator.type = "sine";
+    synth.envelope.attack = 0.01;
+    synth.envelope.decay = 0.01;
+    synth.envelope.sustain = 1;
+    synth.envelope.release = 0.08;
+    synth.modulation.type = "square";
+    synth.modulationEnvelope.attack = 0.07;
+    synth.modulationEnvelope.decay = 1;
+    synth.modulationEnvelope.sustain = 1;
+    synth.modulationEnvelope.release = 1;
+    synth.volume.value = -12;
+    Tone.Transport.toggle();
+    Tone.Transport.bpm.value = 250; //nice to have this be adjustible by the user..
+    this.state.audioContext.resume().then(() => {
+      console.log('Playback resumed successfully');
+    });
 
-         
-    // exampleObject.tags.forEach((tag) => {
-    //   synth.triggerAttackRelease(this.getNoteObject()[tag], '2n', Tone.Time('2n') + Tone.Time('4n'))
-    // });
 
+  }
 
+  render() {
+    return (
+      <>
 
-   
+        <Alert
+          type="danger"
+          style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
+        >
+          {this.state.error}
+        </Alert>
+        <SearchForm
 
+          handleInputChange={this.handleSearchInput}
+          handleTitleSubmit={this.handleTitleSubmit}
+          titles={this.state.titles}
+
+        ></SearchForm>
 
     exampleObject.tags.forEach((tag, index) => {
       this.schedulePlay(this.getNoteObject()[tag], '16n', index, synth)
@@ -235,14 +329,11 @@ class App extends Component {
     });
 
 
-  }
-
-  // returnValue()
 
 
-  render() {
-    return (
-      <>
+
+
+        {/* ========================================================================= */}
         <div className="container" id="main-content-container">
           <div className="row" id="main-content-row">
 
@@ -250,15 +341,13 @@ class App extends Component {
 
             <div className="col-12" id="main-content-column">
 
-              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth</button>
-
+              <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.search}</button>
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
                 q={this.state.q}
               />
-
-              <div class="container">
+              {/* <div class="container">
 
                 <div class="jumbotron text-center">
                   <h1><span class="fa fa-lock"></span> Node Authentication</h1>
@@ -269,22 +358,22 @@ class App extends Component {
                   <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
                 </div>
 
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
-        <Router>
+        {/* <Router>
           <div>
-            <Switch>
-              {/* <Route exact path="/" component={Home} />
+            <Switch> */}
+        {/* <Route exact path="/" component={Home} />
               <Route exact path="/saved" component={Saved} />
               <Route component={NoMatch} /> */}
-              <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile" component={Profile} />
             </Switch>
           </div>
-        </Router>
+        </Router> */}
       </>
     );
   }

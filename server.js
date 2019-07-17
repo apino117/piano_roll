@@ -13,6 +13,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
+
+// This second line is a test for the heroku autodeploy
+
 require('dotenv').config();
 // const passportSecret = process.env.PASSPORT_SECRET;
 
@@ -46,29 +49,29 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 // require('./routes/routes')(app, passport); // load our routes and pass in our app and fully configured passport
-
-// Add routes
-app.use(routes);
-
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true }, function (err) {
-  if (err) {
-    console.log(err)
-  }
-  else { console.log("successfully connected to database!") };
-})
-
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+// Add routes
+app.use(routes);
 
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// // This was the old way to Connect to the Mongo DB
+// mongoose.connect("mongodb://localhost/pianoRollDB", { useNewUrlParser: true }, function (err) {
+//   if (err) {
+//     console.log(err)
+//   }
+//   else { console.log("successfully connected to database!") };
+// })
+
+// If deployed, use the deployed database, otherwise default to the local 
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/pianoRollDB"
+
+// COnnect to the mongo db
+mongoose.connect(MONGODB_URI || `mongodb://${process.env.MLAB_DBNAME}:${process.env.MLAB_PASSWORD}@ds245927.mlab.com:45927/heroku_lm2dk7qt`);
+
+
+
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
