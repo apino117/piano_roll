@@ -81,14 +81,10 @@ class App extends Component {
   componentDidMount = () => {
 
     API.getUrlsList()
-      // .then(res => this.getTitlesFromResults(res.data))
-      // .then(res => console.log(res.data.title))
-      // .then(res => this.setState({ titles: res.data }))
       .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
       .then(() => console.log(this.state.titles))
-
       .catch(err => console.log(err));
-
+    
     const context = new AudioContext();
 
     this.setState({ audioContext: context });
@@ -140,9 +136,6 @@ class App extends Component {
       .then(() => {
         console.log("this is the objectForNotes", this.state.objectForNotes)
       })
-
-
-    
   };
 
   schedulePlay = (note, length, time, synth) => {
