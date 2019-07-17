@@ -22,6 +22,19 @@ class App extends Component {
     results: [],
     q: "",
     error: "",
+    loadMessage: true
+  }
+
+  makeLoadMessage = () => {
+
+    let elMessagio;
+
+    if (!this.state.loadMessage) {
+      let elMessagio = "Synth Loaded"
+    } else {
+      let elMessagio = "Load Synth"
+    } return elMessagio;
+
   }
 
   mapToStandard = (number) => {
@@ -194,12 +207,6 @@ class App extends Component {
           titles={this.state.titles}
 
         ></SearchForm>
-
-
-
-
-
-
 
         {/* ========================================================================= */}
         <div className="container" id="main-content-container">
