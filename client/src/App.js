@@ -210,17 +210,6 @@ class App extends Component {
 
 
     const synth = new Tone.FMSynth().toMaster();
-
-
-    // exampleObject.tags.forEach((tag) => {
-    //   synth.triggerAttackRelease(this.getNoteObject()[tag], '2n', Tone.Time('2n') + Tone.Time('4n'))
-    // });
-
-
-
-   
-
-
     exampleObject.tags.forEach((tag, index) => {
       this.schedulePlay(this.getNoteObject()[tag], '8n', index, synth)
     })
@@ -232,7 +221,7 @@ class App extends Component {
     // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[5]], '16n', Tone.Time('2n') + Tone.Time('8t'))
     // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[7]], '16', Tone.Time('2n') + Tone.Time('8t') * 2)
     // synth.triggerAttackRelease(this.getNoteObject()[exampleObject.tags[76]], '2n', '0:3')
-    Tone.Transport.toggle()
+    Tone.Transport.toggle();
 
     this.state.audioContext.resume().then(() => {
       console.log('Playback resumed successfully');
