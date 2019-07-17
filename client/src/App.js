@@ -221,11 +221,11 @@ class App extends Component {
       .then(res => {
         console.log("this is the result data", res.data)
         this.setState({
-          noteObj: res.data
+          objectForNotes: res.data
         })
       })
       .then(() => {
-        console.log("this is the noteObj", this.state.noteObj)
+        console.log("this is the objectForNotes", this.state.objectForNotes)
       })
       // .then(res => {
       //   if (res.data.status === "error") {
@@ -235,12 +235,9 @@ class App extends Component {
       // })
       // .catch(err => this.setState({ error: err.message }));
 
-    // const title = {
-    //   title: exampleObject.title
-    // };
-    this.setState({
-      search: " "
-    });
+    // this.setState({
+    //   search: " "
+    // });
   };
 
   schedulePlay = (note, length, time, synth) => {
