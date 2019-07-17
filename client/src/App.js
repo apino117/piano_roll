@@ -23,23 +23,109 @@ class App extends Component {
     searchMessage: "",
   }
 
+  // ==================================================|||===================================================== //
+  // ======================== *********** ||| GENERAL REACT FUNCTIONS || *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+
+  componentDidMount = () => {
+
+    this.runTheList();
+
+    const context = new AudioContext();
+
+    this.setState({
+      audioContext: context,
+      loadMessage: "Load Synth"
+    });
+  };
+
+  handleInputChange = event => {
+
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+
+  };
+
+  // ==================================================|||===================================================== //
+  // ======================== *********** ||||| FORM / API FUNCTIONS ||| *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+
+  runTheList = () => {
+    API.getUrlsList()
+      .then(res => this.setState({ titles: this.pullTitlesFromResults(res.data) }))
+      .then(() => console.log(this.state.titles))
+      .catch(err => console.log(err));
+  }
+
+  pullTitlesFromResults = (array) => {
+
+    let justTitles = [];
+    for (let i = 0; i < array.length; i++) {
+      justTitles.push(array[i].title)
+    };
+    return justTitles;
+  }
+
+  handleSearchInput = event => {
+    this.setState({ search: event.target.value });
+    console.log(this.state.search)
+  }
+
+  handleUrlSubmit = event => {
+    event.preventDefault();
+
+    const urlToScrape = {
+      url: this.state.q
+    };
+
+    API.storeUrl(urlToScrape)
+      .then(() => API.getUrl(urlToScrape.url))
+      .then(() => {
+        this.runTheList();
+      })
+    this.setState({
+      q: " ",
+    });
+  };
+
+  handleTitleSubmit = event => {
+    event.preventDefault();
+    API.getNoteObjectByTitle(this.state.search)
+      .then(res => {
+        console.log("this is the result data", res.data)
+        this.setState({
+          objectForNotes: res.data
+        })
+      })
+      .then(() => {
+        console.log("this is the objectForNotes", this.state.objectForNotes)
+      })
+    this.setState({
+      loadMessage: "Synth Loaded",
+      searchMessage: this.state.search
+    })
+  };
+
+  // ==================================================|||===================================================== //
+  // ======================== *********** |||||| MUSIC FUNCTIONS ||||||| *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+
   mapToStandard = (number) => {
-
     let numberToReturn = number;
-
     while (numberToReturn > 127) {
       numberToReturn -= 127;
       // console.log(numberToReturn);
     }
     return numberToReturn
-  }
-
-  runTheList = () => {
-    API.getUrlsList()
-      .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
-      .then(() => console.log(this.state.titles))
-      .catch(err => console.log(err));
-  }
+  };
 
   getNoteObject = () => {
 
@@ -55,90 +141,7 @@ class App extends Component {
       }
       columnCount = 0;
     }
-
     return noteObj;
-  }
-
-  getTitlesFromResults = (array) => {
-
-    let justTitles = [];
-
-    for (let i = 0; i < array.length; i++) {
-      justTitles.push(array[i].title)
-    };
-
-    // console.log(justTitles);
-    return justTitles;
-  }
-
-  componentDidMount = () => {
-
-    this.runTheList();
-
-    const context = new AudioContext();
-
-    this.setState({
-      audioContext: context,
-      loadMessage: "Load Synth"
-    });
-  }
-
-  handleInputChange = event => {
-
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-
-  };
-
-  handleSearchInput = event => {
-    this.setState({ search: event.target.value });
-    console.log(this.state.search)
-  }
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-
-    const urlToScrape = {
-      url: this.state.q
-    };
-
-    API.storeUrl(urlToScrape)
-      .then(() => API.getUrl(urlToScrape.url))
-      .then(() => {
-        this.runTheList();
-      })
-
-
-    this.setState({
-      q: " ",
-    });
-    // this.getBooks();
-  };
-
-  handleTitleSubmit = event => {
-    event.preventDefault();
-
-    // alert("work!");
-
-    console.log(this.state.search);
-
-    API.getNoteObjectByTitle(this.state.search)
-      .then(res => {
-        console.log("this is the result data", res.data)
-        this.setState({
-          objectForNotes: res.data
-        })
-      })
-      .then(() => {
-        console.log("this is the objectForNotes", this.state.objectForNotes)
-      })
-
-    this.setState({
-      loadMessage: "Synth Loaded",
-      searchMessage: this.state.search
-    })
   };
 
   schedulePlay = (note, length, time, synth) => {
@@ -149,8 +152,6 @@ class App extends Component {
   }
 
   playSynth = () => {
-
-
     const synth = new Tone.FMSynth().toMaster();
     this.state.objectForNotes.tags.forEach((tag, index) => {
       this.schedulePlay(this.getNoteObject()[tag], '16n', index, synth)
@@ -174,30 +175,25 @@ class App extends Component {
     this.state.audioContext.resume().then(() => {
       console.log('Playback resumed successfully');
     });
-
-
   }
+
+
+  // ==================================================|||===================================================== //
+  // ======================== *********** ||||||||| JSK RENDER ||||||||| *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
+  // ======================== ***********                                *********** ======================== //
 
   render() {
     return (
       <>
 
-        <Alert
-          type="danger"
-          style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
-        >
-          {this.state.error}
-        </Alert>
+        <Alert type="danger" style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}>{this.state.error}</Alert>
         <SearchForm
-
           handleInputChange={this.handleSearchInput}
           handleTitleSubmit={this.handleTitleSubmit}
           titles={this.state.titles}
-
-
-        >
-
-        </SearchForm>
+        ></SearchForm>
         <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
           {this.state.loadMessage}
         </Button>
@@ -205,15 +201,13 @@ class App extends Component {
         {/* ========================================================================= */}
         <div className="container" id="main-content-container">
           <div className="row" id="main-content-row">
-
-            <h1>Piano Roll</h1>
-
+            <h1>HTML Piano Roll</h1>
+            <h2>Hear your favorite websites!</h2>
             <div className="col-12" id="main-content-column">
-
               <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</button>
               <Form
                 handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
+                handleUrlSubmit={this.handleUrlSubmit}
                 q={this.state.q}
               />
             </div>
