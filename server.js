@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 
 
-// This line is a test for the heroku autodeploy
+// This second line is a test for the heroku autodeploy
 
 require('dotenv').config();
 // const passportSecret = process.env.PASSPORT_SECRET;
