@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
 // Router Stuff
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Profile from "./pages/Profile";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import Login from "./pages/Login";
+// import Signup from "./pages/Signup";
+// import Profile from "./pages/Profile";
 import Form from "./components/Form/index";
 import API from "./utils/API";
 import SearchForm from "./components/SearchForm";
@@ -52,7 +52,6 @@ class App extends Component {
 
     return noteObj;
   }
-
 
   getTitlesFromResults = (array) => {
 
