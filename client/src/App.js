@@ -117,7 +117,9 @@ class App extends Component {
     objectForNotes: {},
     audioContext: {},
     // websites: [],
+    search: "",
     titles: [],
+    results: [],
     q: ""
   }
 
@@ -173,6 +175,11 @@ class App extends Component {
     });
 
   };
+
+  handleSearchInput = event => {
+    this.setState({search : event.target.value});
+    console.log(this.state.search)
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -250,7 +257,7 @@ class App extends Component {
       <>
         <SearchForm
 
-          handleInputChange={this.handleInputChange}
+          handleInputChange={this.handleSearchInput}
           // title={this.state.title}
           handleTitleSubmit={this.handleTitleSubmit}
           titles={this.state.websites}
