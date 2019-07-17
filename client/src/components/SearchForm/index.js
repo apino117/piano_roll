@@ -25,7 +25,7 @@ function SearchForm(props) {
           {/* <option value={props.titles[0]} key={props.titles[0]} /> */}
         </datalist>
         <button type="submit" onClick={props.handleTitleSubmit} className="btn btn-success">
-          Search
+          Load Synth
         </button>
       </div>
     </form>

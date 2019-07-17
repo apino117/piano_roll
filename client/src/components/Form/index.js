@@ -25,7 +25,7 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
                     type="submit"
                     className="btn btn-lg btn danger float-right"
                 >
-                    SUBMIT
+                    Add Website
                 </button>
             </div>
         </form>
