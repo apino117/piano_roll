@@ -38,6 +38,13 @@ class App extends Component {
     return numberToReturn
   }
 
+  runTheList = () => {
+    API.getUrlsList()
+      .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
+      .then(() => console.log(this.state.titles))
+      .catch(err => console.log(err));
+  }
+
   getNoteObject = () => {
 
     let noteObj = {};
@@ -70,10 +77,7 @@ class App extends Component {
 
   componentDidMount = () => {
 
-    API.getUrlsList()
-      .then(res => this.setState({ titles: this.getTitlesFromResults(res.data) }))
-      .then(() => console.log(this.state.titles))
-      .catch(err => console.log(err));
+    this.runTheList();
 
     const context = new AudioContext();
 
@@ -105,8 +109,12 @@ class App extends Component {
     };
 
     API.storeUrl(urlToScrape)
-      .then(() => API.getUrl(urlToScrape.url));
+      .then(() => API.getUrl(urlToScrape.url))
+      .then(() => {
+        this.runTheList();
+      })
 
+      
     this.setState({
       q: " ",
     });
@@ -131,10 +139,10 @@ class App extends Component {
         console.log("this is the objectForNotes", this.state.objectForNotes)
       })
 
-     this.setState({
-       loadMessage: "Synth Loaded",
-       searchMessage: this.state.search
-     }) 
+    this.setState({
+      loadMessage: "Synth Loaded",
+      searchMessage: this.state.search
+    })
   };
 
   schedulePlay = (note, length, time, synth) => {
@@ -192,7 +200,7 @@ class App extends Component {
 
 
         >
-          
+
         </SearchForm>
         <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
           {this.state.loadMessage}
