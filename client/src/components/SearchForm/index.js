@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import Button from "../Button/index";
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function SearchForm(props) {
@@ -24,9 +25,9 @@ function SearchForm(props) {
           ))}
           {/* <option value={props.titles[0]} key={props.titles[0]} /> */}
         </datalist>
-        <button type="submit" onClick={props.handleTitleSubmit} className="btn btn-success">
-          Load Synth
-        </button>
+        <Button type="submit" onClick={props.handleTitleSubmit} className="btn btn-success">
+          {props.loadMessage}
+        </Button>
       </div>
     </form>
   );
