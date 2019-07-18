@@ -30,7 +30,7 @@ div.jumbotron.jumbotron-fluid {
 }
 
 .btn {
-    /* background-color: black; */
+    background-color: black;
     color: white;
     text-transform: none;
 }
