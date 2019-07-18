@@ -1,26 +1,27 @@
-
 * {
     box-sizing: border-box;
+    Font-Family: 'Poppins', Sans-Serif;
 }
 
 /* Whole Body */
-html, body, #root, #root>div, div[data-reactroot] 
-{
 
-background-color: rgb(130, 119, 119)
-
+html, body, #root, #root>div, div[data-reactroot] {
+    background-color: rgb(222, 178, 178);
+    background-image: url(./assets/images/album-black-classic-167092.jpg);
+    background-size: cover;
 }
 
-h1 {
-    color: red;
+h1, h2 {
+    /* color: red; */
     padding: 5px;
+    Font-Family: 'Abril Fatface', Cursive;
 }
 
-div#title-row.row{
+div#title-row.row {
     width: 739%;
 }
 
 div.jumbotron.jumbotron-fluid {
     border-radius: 15px;
+    background-color: rgba(210, 180, 140, 0.831);
 }
-

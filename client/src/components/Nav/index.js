@@ -34,10 +34,10 @@ class Nav extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
-        <Link className="navbar-brand" to="/">
+        {/* <Link className="navbar-brand" to="/"> */}
         <div className="row" id="title-row"><h1>HTML Piano Roll</h1></div>
-        </Link>
-        <button
+        {/* </Link> */}
+        {/* <button
           onClick={this.toggleNav}
           className="navbar-toggler"
           data-toggle="collapse"
@@ -47,8 +47,8 @@ class Nav extends Component {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon" />
-        </button>
-        <div className={`${this.state.open ? "" : "collapse "}navbar-collapse`} id="navbarNav">
+        </button> */}
+        {/* <div className={`${this.state.open ? "" : "collapse "}navbar-collapse`} id="navbarNav"> */}
           {/* <ul className="navbar-nav">
             <li className="nav-item">
               <Link
@@ -69,7 +69,7 @@ class Nav extends Component {
               </Link>
             </li>
           </ul> */}
-        </div>
+        {/* </div> */}
       </nav>
     );
   }
