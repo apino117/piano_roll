@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import Button from "../Button/index"
 
 
 function Form({ q, handleInputChange, handleUrlSubmit }) {
@@ -22,11 +23,11 @@ function Form({ q, handleInputChange, handleUrlSubmit }) {
             </div>
 
             <div className="pull-right">
-                <button
+                <Button
                     onClick={handleUrlSubmit}
                     type="submit"
                     className="btn btn-lg float-right"
-                >Add</button>
+                >Add</Button>
             </div>
         </form>
     );
