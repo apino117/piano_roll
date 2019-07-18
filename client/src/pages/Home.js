@@ -5,7 +5,9 @@ import SearchForm from "../components/SearchForm/index";
 import Alert from "../components/Alert/index";
 import Button from "../components/Button/index";
 import Wrapper from "../components/Wrapper/index";
-import Grid, { Container, Row, Col } from "../components/Grid/index";
+import Footer from "../components/Footer/index"
+import { Container, Row, Col } from "../components/Grid/index";
+import "../index.css"
 
 const Tone = require("tone");
 
@@ -221,6 +223,7 @@ class Home extends Component {
 
                             </Col>
                         </Row>
+                        <Footer/>
                     </Container>
                 </Wrapper>
             </>
