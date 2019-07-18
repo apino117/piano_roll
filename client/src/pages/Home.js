@@ -4,7 +4,7 @@ import API from "../utils/API";
 import SearchForm from "../components/SearchForm/index";
 import Alert from "../components/Alert/index";
 import Button from "../components/Button/index";
-import Grid, { Container, Row, Col } from "../components/Grid/index"
+import Grid, { Container, Row, Col } from "../components/Grid/index";
 
 const Tone = require("tone");
 

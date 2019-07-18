@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Whole Body */
+html, body, #root, #root>div, div[data-reactroot] 
+{
+
+background-color: rgb(130, 119, 119)
+
+}
