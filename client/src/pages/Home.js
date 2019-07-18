@@ -192,7 +192,7 @@ class Home extends Component {
                     <Container id="main-container">
                         <Jumbotron>
                             <Row id="main-row">
-                                <h2>Hear your favorite websites played on an FM Synthesizer!</h2>
+                                <h2>Hear your favorite websites played on a Synthesizer!</h2>
                                 <Col size="md-12">
 
                                     {/* ---------------------------------------------------------------------------------------------------------- */}
@@ -204,7 +204,7 @@ class Home extends Component {
                                         handleUrlSubmit={this.handleUrlSubmit}
                                         q={this.state.q}
                                     />
-                                    <Button type="submit" onClick={this.playSynth} className="btn btn-success mb-2">Play Synth: {this.state.searchMessage}</Button>
+                                    <Button type="submit" onClick={this.playSynth} className="btn btn-light">Play Synth: {this.state.searchMessage}</Button>
 
                                     {/* ---------------------------------------------------------------------------------------------------------- */}
                                     {/* =================================== Form to scroll through database ====================================== */}
@@ -216,7 +216,7 @@ class Home extends Component {
                                         handleTitleSubmit={this.handleTitleSubmit}
                                         titles={this.state.titles}
                                     ></SearchForm>
-                                    <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-primary">
+                                    <Button type="submit" onClick={this.handleTitleSubmit} className="btn-light">
                                         {this.state.loadMessage}
                                     </Button>
                                 </Col>

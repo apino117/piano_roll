@@ -1,12 +1,9 @@
 .navbar {
   border-radius: 10;
   justify-content: center;
+  background-color: #efb7b7d1
 }
 
 .row {
   align-self: center
-}
-
-.h1 {
-  color: red;
 }
