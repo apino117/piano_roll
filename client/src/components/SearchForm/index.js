@@ -23,7 +23,6 @@ function SearchForm(props) {
           {props.titles.map(title => (
             <option value={title} key={title} />
           ))}
-          {/* <option value={props.titles[0]} key={props.titles[0]} /> */}
         </datalist>
       </div>
     </form>
