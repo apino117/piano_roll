@@ -9,3 +9,8 @@ html, body, #root, #root>div, div[data-reactroot]
 background-color: rgb(130, 119, 119)
 
 }
+
+.button {
+    color: aqua,
+}
+

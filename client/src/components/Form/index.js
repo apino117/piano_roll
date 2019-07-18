@@ -14,7 +14,7 @@ function Form({ q, handleInputChange, handleUrlSubmit }) {
                     id="Website"
                     type="text"
                     value={q}
-                    placeholder="http://reductress.com/"
+                    placeholder="For Example: http://reductress.com/"
                     name="q"
                     onChange={handleInputChange}
                     required
@@ -25,10 +25,8 @@ function Form({ q, handleInputChange, handleUrlSubmit }) {
                 <button
                     onClick={handleUrlSubmit}
                     type="submit"
-                    className="btn btn-lg btn danger float-right"
-                >
-                    Add
-                </button>
+                    className="btn btn-lg float-right"
+                >Add</button>
             </div>
         </form>
     );
