@@ -8,7 +8,11 @@ To get started you can do one of two things: you can put in a new URL and add th
 
 ### Prerequisites
 
-The main prerequisite is Tone, it's a software to build and play synths. Otherwise cheerio axios and react are standard.  
+The main prerequisite is Tone, it's a software to build and play synths. Otherwise cheerio axios and react are standard. 
+
+There are some cool demos too to help figure out what you'd wanna do:
+
+```https://tonejs.github.io/demos```
 
 ## Running the tests
 
