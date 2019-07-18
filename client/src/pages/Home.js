@@ -7,6 +7,7 @@ import Button from "../components/Button/index";
 import Wrapper from "../components/Wrapper/index";
 import Footer from "../components/Footer/index";
 import Jumbotron from "../components/Jumbotron/index";
+import Nav from "../components/Nav/index"
 import { Container, Row, Col } from "../components/Grid/index";
 import "../index.css"
 
@@ -187,9 +188,8 @@ class Home extends Component {
         return (
             <>
                 <Wrapper>
+                    <Nav></Nav>
                     <Container id="main-container">
-
-                        <Row id="title-row"><h1>HTML Piano Roll</h1></Row>
                         <Jumbotron>
                             <Row id="main-row">
                                 <h2>Hear your favorite websites played on an FM Synthesizer!</h2>

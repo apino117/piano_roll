@@ -11,5 +11,12 @@ background-color: rgb(130, 119, 119)
 
 }
 
+h1 {
+    color: red;
+    padding: 5px;
+}
 
+div#title-row.row{
+    width: 739%;
+}
 
