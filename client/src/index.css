@@ -20,3 +20,7 @@ div#title-row.row{
     width: 739%;
 }
 
+div.jumbotron.jumbotron-fluid {
+    border-radius: 15px;
+}
+

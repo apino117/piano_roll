@@ -204,7 +204,7 @@ class Home extends Component {
                                         handleUrlSubmit={this.handleUrlSubmit}
                                         q={this.state.q}
                                     />
-                                    <Button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</Button>
+                                    <Button type="submit" onClick={this.playSynth} className="btn btn-success mb-2">Play Synth: {this.state.searchMessage}</Button>
 
                                     {/* ---------------------------------------------------------------------------------------------------------- */}
                                     {/* =================================== Form to scroll through database ====================================== */}
@@ -216,7 +216,7 @@ class Home extends Component {
                                         handleTitleSubmit={this.handleTitleSubmit}
                                         titles={this.state.titles}
                                     ></SearchForm>
-                                    <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
+                                    <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-primary">
                                         {this.state.loadMessage}
                                     </Button>
                                 </Col>
