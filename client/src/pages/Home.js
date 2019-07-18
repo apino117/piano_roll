@@ -77,6 +77,8 @@ class Home extends Component {
     handleUrlSubmit = event => {
         event.preventDefault();
 
+        // alert("fuck")
+
         const urlToScrape = {
             url: this.state.q
         };

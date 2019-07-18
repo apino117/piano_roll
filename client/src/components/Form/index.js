@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 
-function Form({ q, handleInputChange, handleFormSubmit }) {
+function Form({ q, handleInputChange, handleUrlSubmit }) {
     return (
         <form>
             <div className="form-group">
@@ -23,7 +23,7 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
 
             <div className="pull-right">
                 <button
-                    onClick={handleFormSubmit}
+                    onClick={handleUrlSubmit}
                     type="submit"
                     className="btn btn-lg btn danger float-right"
                 >
