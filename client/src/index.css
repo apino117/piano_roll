@@ -1,14 +1,17 @@
 * {
     box-sizing: border-box;
-    Font-Family: 'Poppins', Sans-Serif;
+    
+    
 }
 
 /* Whole Body */
 
 html, body, #root, #root>div, div[data-reactroot] {
     background-color: rgb(222, 178, 178);
-    background-image: url(./assets/images/album-black-classic-167092.jpg);
+    background-image: url(./assets/images/antique-classic-concert-250695.jpg);
     background-size: cover;
+    Font-Family: 'Poppins', Sans-Serif;
+    font-size: 1rem
 }
 
 h1, h2 {
@@ -23,5 +26,11 @@ div#title-row.row {
 
 div.jumbotron.jumbotron-fluid {
     border-radius: 15px;
-    background-color: rgba(210, 180, 140, 0.831);
+    background-color: rgba(170, 211, 125, 0.94);
+}
+
+.btn {
+    /* background-color: black; */
+    color: white;
+    text-transform: none;
 }
