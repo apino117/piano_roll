@@ -41,7 +41,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 * **Owen Dennehey** - *Co-Creator, Research & Sonification* - (https://github.com/OwenDennehy95)
 
-* **Alex Pino** - *Co-Creator, Database, Web Scraper* - (https://github.com/apino117)
+* **Alex Pino** - *Creator, Backend Construction, Code Architecture* - (https://github.com/apino117)
 
 See also the list of [contributors](https://github.com/apino117/piano_roll/graphs/contributors) who participated in this project.
 
@@ -51,7 +51,8 @@ This project is licensed under the ISC License - see the [LICENSE.md](https://op
 
 ## Acknowledgments
 
-* ???
+* [This link right here](https://teropa.info/blog/2016/07/28/javascript-systems-music.html) for introducing me to Steve Reich's [_It's Gonna Rain_](https://www.youtube.com/watch?v=vWN9I-qa9GQ) - the piece of music responsible for inspiring this idea.
+* Steve Reich, John Cage, Phillip Glass, Animal Collective, Aphex Twin
 
 ## Heroku
 

@@ -18,7 +18,7 @@ export default {
         return axios.get("api/url");
     },
 
-    getNoteObjectByTitle: (title) => {
+    setNoteObjectByTitle: (title) => {
         return axios.get(`api/url/${title}`)
     },
 
