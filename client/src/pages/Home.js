@@ -5,7 +5,8 @@ import SearchForm from "../components/SearchForm/index";
 import Alert from "../components/Alert/index";
 import Button from "../components/Button/index";
 import Wrapper from "../components/Wrapper/index";
-import Footer from "../components/Footer/index"
+import Footer from "../components/Footer/index";
+import Jumbotron from "../components/Jumbotron/index";
 import { Container, Row, Col } from "../components/Grid/index";
 import "../index.css"
 
@@ -189,41 +190,39 @@ class Home extends Component {
                     <Container id="main-container">
 
                         <Row id="title-row"><h1>HTML Piano Roll</h1></Row>
-                        <Row id="main-row">
-                            <h2>Hear your favorite websites!</h2>
-                            <Col size="md-12">
+                        <Jumbotron>
+                            <Row id="main-row">
+                                <h2>Hear your favorite websites played on an FM Synthesizer!</h2>
+                                <Col size="md-12">
 
-                                {/* ---------------------------------------------------------------------------------------------------------- */}
-                                {/* ======================================== Form to input new websites ====================================== */}
-                                {/* ---------------------------------------------------------------------------------------------------------- */}
+                                    {/* ---------------------------------------------------------------------------------------------------------- */}
+                                    {/* ======================================== Form to input new websites ====================================== */}
+                                    {/* ---------------------------------------------------------------------------------------------------------- */}
 
+                                    <Form
+                                        handleInputChange={this.handleInputChange}
+                                        handleUrlSubmit={this.handleUrlSubmit}
+                                        q={this.state.q}
+                                    />
+                                    <Button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</Button>
 
-                                <Form
-                                    handleInputChange={this.handleInputChange}
-                                    handleUrlSubmit={this.handleUrlSubmit}
-                                    q={this.state.q}
-                                />
-                                <Button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</Button>
+                                    {/* ---------------------------------------------------------------------------------------------------------- */}
+                                    {/* =================================== Form to scroll through database ====================================== */}
+                                    {/* ---------------------------------------------------------------------------------------------------------- */}
 
-                                {/* ---------------------------------------------------------------------------------------------------------- */}
-                                {/* =================================== Form to scroll through database ====================================== */}
-                                {/* ---------------------------------------------------------------------------------------------------------- */}
-
-                                <Alert type="danger" style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}>{this.state.error}</Alert>
-                                <SearchForm
-                                    handleInputChange={this.handleSearchInput}
-                                    handleTitleSubmit={this.handleTitleSubmit}
-                                    titles={this.state.titles}
-                                ></SearchForm>
-                                <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
-                                    {this.state.loadMessage}
-                                </Button>
-
-
-
-                            </Col>
-                        </Row>
-                        <Footer/>
+                                    <Alert type="danger" style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}>{this.state.error}</Alert>
+                                    <SearchForm
+                                        handleInputChange={this.handleSearchInput}
+                                        handleTitleSubmit={this.handleTitleSubmit}
+                                        titles={this.state.titles}
+                                    ></SearchForm>
+                                    <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
+                                        {this.state.loadMessage}
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Jumbotron>
+                        <Footer />
                     </Container>
                 </Wrapper>
             </>
