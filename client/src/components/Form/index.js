@@ -1,18 +1,21 @@
 import React from "react";
+import "./style.css";
+import Button from "../Button/index"
 
-function Form({ q, handleInputChange, handleFormSubmit }) {
+
+function Form({ q, handleInputChange, handleUrlSubmit }) {
     return (
         <form>
             <div className="form-group">
                 <label htmlFor="Query">
-                    <strong>Website</strong>
+                    <strong>Add a new website:</strong>
                 </label>
                 <input
                     className="form-control"
                     id="Website"
                     type="text"
                     value={q}
-                    placeholder="http://reductress.com/"
+                    placeholder="For Example: http://reductress.com/"
                     name="q"
                     onChange={handleInputChange}
                     required
@@ -20,13 +23,11 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
             </div>
 
             <div className="pull-right">
-                <button
-                    onClick={handleFormSubmit}
+                <Button
+                    onClick={handleUrlSubmit}
                     type="submit"
-                    className="btn btn-lg btn danger float-right"
-                >
-                    Add Website
-                </button>
+                    className="btn-light mb-2 float-right"
+                >Add</Button>
             </div>
         </form>
     );

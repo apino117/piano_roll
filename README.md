@@ -1,33 +1,32 @@
 # HTML Piano Roll
 
-Welcome to Piano Roll, a new technology designed to create music from sourcecode! How it works is you put in a URL, we then take tags from the HTML and convert them into musical notes.
+Welcome to HTML Piano Roll, a new technology designed to create music from sourcecode! How it works is you put in a URL, we then take tags from the HTML and convert them into musical notes.
 
 ## Getting Started
 
-???
+To get started you can do one of two things: you can put in a new URL and add that to our synth database or you can pick an existing URL and play the synth from that. Once a website it saved it cannot be submitted again. Invalid URLs will not be added into the database. 
 
 ### Prerequisites
 
-??? 
+The main prerequisite is Tone, it's a software to build and play synths. Otherwise cheerio axios and react are standard. 
 
+There are some cool demos too to help figure out what you'd wanna do:
 
-```(Shrug)```
-
+```https://tonejs.github.io/demos```
 
 ## Running the tests
 
-??? 
+Most of the tests are confirmed through the console so if things seem off check the logs. If a URL isn't valid for example it'll show in the console.
 
+## Built Using
 
-## Built With
-
-* [Dotenv](https://www.npmjs.com/package/dotenv) - Secure data encryption
-* [Express](https://www.npmjs.com/package/express) - Server Creation
+* [Cheerio](https://www.npmjs.com/package/cheerio) - Web Scraping
+* [Tone](https://tonejs.github.io/) - Synthesizer
+* [Axios](https://www.npmjs.com/package/axios) - API / Database querying
 * [React](https://reactjs.org/) - Front-End UI Components
 * [Mongoose DB](https://www.npmjs.com/package/mongoose) - Database Creation
-* [Axios](https://www.npmjs.com/package/axios) - API querying
-* [Cheerio](https://www.npmjs.com/package/cheerio) - Web Scraping
-
+* [Express](https://www.npmjs.com/package/express) - Server Creation
+* [Dotenv](https://www.npmjs.com/package/dotenv) - Secure data encryption
 
 ## Contributing
 
@@ -51,8 +50,30 @@ This project is licensed under the ISC License - see the [LICENSE.md](https://op
 
 ## Acknowledgments
 
-* [This link right here](https://teropa.info/blog/2016/07/28/javascript-systems-music.html) for introducing me to Steve Reich's [_It's Gonna Rain_](https://www.youtube.com/watch?v=vWN9I-qa9GQ) - the piece of music responsible for inspiring this idea.
-* Steve Reich, John Cage, Phillip Glass, Animal Collective, Aphex Twin
+* First props go to [this link right here](https://teropa.info/blog/2016/07/28/javascript-systems-music.html) for introducing me to Steve Reich's [_It's Gonna Rain_](https://www.youtube.com/watch?v=vWN9I-qa9GQ) - the piece of music responsible for inspiring this idea
+
+* Second props go to all the artists who showed me that "music" was a term open for discussion and interpretation:
+    * The Beatles
+    * Phillip Glass
+    * Pink Floyd
+    * Beastie Boys
+    * Radiohead
+    * Flying Lotus
+    * Animal Collective
+    * Bassnectar
+    * Amp Live
+    * Superorganism
+    * Four Tet
+    * Boards of Canada
+    * Daedelus
+    * Damon Albarn 
+    * Aphex Twin
+    * Solange
+    * John Cage
+    * Steve Reich
+
+* Special thanks to Amanda for being there through this all and to Louise, Michael and Cheech for their unrelenting belief in me despite my protests
+
 
 ## Heroku
 

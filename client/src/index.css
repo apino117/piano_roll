@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    
+    
+}
+
+/* Whole Body */
+
+html, body, #root, #root>div, div[data-reactroot] {
+    background-color: rgb(222, 178, 178);
+    background-image: url(./assets/images/antique-classic-concert-250695.jpg);
+    background-size: cover;
+    Font-Family: 'Poppins', Sans-Serif;
+    font-size: 1rem
+}
+
+
+
+h1, h2 {
+    /* color: red; */
+    padding: 5px;
+    margin: 10px;
+    Font-Family: 'Abril Fatface', Cursive;
+    font-size: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    margin-top: -54px;
+    margin-bottom: 30px;
+}
+
+div#title-row.row {
+    width: 739%;
+}
+
+div#middle-row {
+    margin-top: 145px;
+}
+
+div.jumbotron.jumbotron-fluid {
+    margin-top: 40px;
+    border-radius: 15px;
+    background-color: rgba(228, 181, 151, 0.92);
+}
+
+.btn {
+    background-color: black;
+    color: white;
+    text-transform: none;
+}
