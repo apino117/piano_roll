@@ -42,8 +42,9 @@ div#middle-row {
 }
 
 div.jumbotron.jumbotron-fluid {
+    margin-top: 40px;
     border-radius: 15px;
-    background-color: rgba(170, 211, 125, 0.94);
+    background-color: rgba(228, 181, 151, 0.92);
 }
 
 .btn {
