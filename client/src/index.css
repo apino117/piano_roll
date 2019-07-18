@@ -14,14 +14,31 @@ html, body, #root, #root>div, div[data-reactroot] {
     font-size: 1rem
 }
 
+
+
 h1, h2 {
     /* color: red; */
     padding: 5px;
+    margin: 10px;
     Font-Family: 'Abril Fatface', Cursive;
+    font-size: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    margin-top: -54px;
+    margin-bottom: 30px;
 }
 
 div#title-row.row {
     width: 739%;
+}
+
+div#middle-row {
+    margin-top: 145px;
 }
 
 div.jumbotron.jumbotron-fluid {

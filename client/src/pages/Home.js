@@ -205,11 +205,13 @@ class Home extends Component {
                                         q={this.state.q}
                                     />
 
-                                    <hr></hr>
-                                    <div class="row">
+
+                                    <div class="row" id="middle-row">
+                                        <hr></hr>
                                         <h3>Select a website from the database or add your own</h3>
+                                        <hr></hr>
                                     </div>
-                                    <hr></hr>
+
 
                                     {/* ---------------------------------------------------------------------------------------------------------- */}
                                     {/* =================================== Form to scroll through database ====================================== */}
