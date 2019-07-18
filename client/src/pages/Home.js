@@ -4,6 +4,7 @@ import API from "../utils/API";
 import SearchForm from "../components/SearchForm/index";
 import Alert from "../components/Alert/index";
 import Button from "../components/Button/index";
+import Grid, { Container, Row, Col } from "../components/Grid/index"
 
 const Tone = require("tone");
 
@@ -179,38 +180,41 @@ class Home extends Component {
     render() {
         return (
             <>
-                {/* ---------------------------------------------------------------------------------------------------------- */}
-                {/* =================================== Form to scroll through database ====================================== */}
-                {/* ---------------------------------------------------------------------------------------------------------- */}
+                <Container id="main-container">
+                    <h1>HTML Piano Roll</h1>
+                    <h2>Hear your favorite websites!</h2>
+                    <Row id="main-row">
 
-                <Alert type="danger" style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}>{this.state.error}</Alert>
-                <SearchForm
-                    handleInputChange={this.handleSearchInput}
-                    handleTitleSubmit={this.handleTitleSubmit}
-                    titles={this.state.titles}
-                ></SearchForm>
-                <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
-                    {this.state.loadMessage}
-                </Button>
+                        {/* ---------------------------------------------------------------------------------------------------------- */}
+                        {/* =================================== Form to scroll through database ====================================== */}
+                        {/* ---------------------------------------------------------------------------------------------------------- */}
 
-                {/* ---------------------------------------------------------------------------------------------------------- */}
-                {/* ======================================== Form to input new websites ====================================== */}
-                {/* ---------------------------------------------------------------------------------------------------------- */}
+                        <Col size="md-6">
+                            <Alert type="danger" style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}>{this.state.error}</Alert>
+                            <SearchForm
+                                handleInputChange={this.handleSearchInput}
+                                handleTitleSubmit={this.handleTitleSubmit}
+                                titles={this.state.titles}
+                            ></SearchForm>
+                            <Button type="submit" onClick={this.handleTitleSubmit} className="btn btn-success">
+                                {this.state.loadMessage}
+                            </Button>
+                        </Col>
 
-                <div className="container" id="main-content-container">
-                    <div className="row" id="main-content-row">
-                        <h1>HTML Piano Roll</h1>
-                        <div className="col-12" id="main-content-column">
-                            <h2>Hear your favorite websites!</h2>
+                        {/* ---------------------------------------------------------------------------------------------------------- */}
+                        {/* ======================================== Form to input new websites ====================================== */}
+                        {/* ---------------------------------------------------------------------------------------------------------- */}
+
+                        <Col size="md-6">
                             <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</button>
                             <Form
                                 handleInputChange={this.handleInputChange}
                                 handleUrlSubmit={this.handleUrlSubmit}
                                 q={this.state.q}
                             />
-                        </div>
-                    </div>
-                </div>
+                        </Col>
+                    </Row>
+                </Container>
             </>
         );
     }
