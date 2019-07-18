@@ -26,7 +26,7 @@ function Form({ q, handleInputChange, handleUrlSubmit }) {
                 <Button
                     onClick={handleUrlSubmit}
                     type="submit"
-                    className="btn btn-primary mb-2 float-right"
+                    className="btn-light mb-2 float-right"
                 >Add</Button>
             </div>
         </form>
