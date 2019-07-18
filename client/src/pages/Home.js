@@ -192,7 +192,7 @@ class Home extends Component {
                     <Container id="main-container">
                         <Jumbotron>
                             <Row id="main-row">
-                                <h2>Hear your favorite websites played on a Synthesizer!</h2>
+                                <h2>Play your favorite websites on a synthesizer!</h2>
                                 <Col size="md-12">
 
                                     {/* ---------------------------------------------------------------------------------------------------------- */}

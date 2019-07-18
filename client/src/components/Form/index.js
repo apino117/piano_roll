@@ -8,7 +8,7 @@ function Form({ q, handleInputChange, handleUrlSubmit }) {
         <form>
             <div className="form-group">
                 <label htmlFor="Query">
-                    <strong>Add a new Website:</strong>
+                    <strong>Add a new website:</strong>
                 </label>
                 <input
                     className="form-control"
