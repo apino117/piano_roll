@@ -206,12 +206,13 @@ class Home extends Component {
                         {/* ---------------------------------------------------------------------------------------------------------- */}
 
                         <Col size="md-6">
-                            <button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</button>
                             <Form
                                 handleInputChange={this.handleInputChange}
                                 handleUrlSubmit={this.handleUrlSubmit}
                                 q={this.state.q}
                             />
+                            <Button type="submit" onClick={this.playSynth} className="btn btn-primary mb-2">Play Synth: {this.state.searchMessage}</Button>
+
                         </Col>
                     </Row>
                 </Container>

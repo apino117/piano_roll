@@ -1,11 +1,13 @@
 import React from "react";
+import "./style.css";
+
 
 function Form({ q, handleInputChange, handleFormSubmit }) {
     return (
         <form>
             <div className="form-group">
                 <label htmlFor="Query">
-                    <strong>Website</strong>
+                    <strong>Add a new Website:</strong>
                 </label>
                 <input
                     className="form-control"
@@ -25,7 +27,7 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
                     type="submit"
                     className="btn btn-lg btn danger float-right"
                 >
-                    Add Website
+                    Add
                 </button>
             </div>
         </form>
