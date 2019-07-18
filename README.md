@@ -58,6 +58,8 @@ This project is licensed under the ISC License - see the [LICENSE.md](https://op
     * Pink Floyd
     * Beastie Boys
     * Radiohead
+    * Eels
+    * Beck
     * Flying Lotus
     * Animal Collective
     * Bassnectar
