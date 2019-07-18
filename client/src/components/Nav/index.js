@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./style.css";
-import {Row} from "../Grid/index";
+// import {Row} from "../Grid/index";
 
 class Nav extends Component {
   state = {
@@ -33,9 +33,9 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
+      <nav className="navbar navbar-expand-lg navbar-light mb-2">
         {/* <Link className="navbar-brand" to="/"> */}
-        <div className="row" id="title-row"><h1>HTML Piano Roll</h1></div>
+        <div className="row" id="title-row"><h1 id="title-header">HTML Piano Roll</h1></div>
         {/* </Link> */}
         {/* <button
           onClick={this.toggleNav}
