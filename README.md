@@ -24,7 +24,7 @@ Most of the tests are confirmed through the console so if things seem off check 
 * [Tone](https://tonejs.github.io/) - Synthesizer
 * [Axios](https://www.npmjs.com/package/axios) - API / Database querying
 * [React](https://reactjs.org/) - Front-End UI Components
-* [Mongoose DB](https://www.npmjs.com/package/mongoose) - Database Creation
+* [Mongo DB](https://www.npmjs.com/package/mongoose) - Database Creation
 * [Express](https://www.npmjs.com/package/express) - Server Creation
 * [Dotenv](https://www.npmjs.com/package/dotenv) - Secure data encryption
 
